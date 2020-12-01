@@ -71,7 +71,7 @@
             <form class="product__order">
               <ul class="product__params"> <!-- params -->
                 {{#each params as |param paramId| }}
-                {{#ifEquals type "checkboxes"}}
+                {{#ifEquals type "checkboxes"}} <!--if param has type = checkbox-->
                 <li> <!-- checkboxes -->
                   <h3 class="product__params-title">{{{ label }}}</h3>
                   {{#each options}}
@@ -128,7 +128,7 @@
             </form>
             <div class="product__images {{ class }}"> <!-- images -->
               {{#each images}}
-              {{{ this }}}
+              {{{ this }}} <!--this odnosi sie do pojedynczego el , po ktorym iteruje petla #each-->
               {{/each}}
             </div>
           </div>
