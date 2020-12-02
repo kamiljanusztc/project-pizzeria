@@ -65,9 +65,9 @@
 
       thisProduct.initAccordion(); // wywolanie metody initAccordion
 
-      thisProduct.initOrderForm();
+      //thisProduct.initOrderForm();
 
-      thisProduct.processOrder();
+      //thisProduct.processOrder();
 
       console.log('new Product:', thisProduct);
     } // klasa product za pomoca metody renderInMenu bierze dane zrodlowe produktu i wyrzuca je do szablonu - tak powstaje kod html pojedynczego produktu
@@ -112,11 +112,13 @@
         event.preventDefault();
 
         /* find active product (product that has active class) */
-        const activeProduct = document.querySelectorAll(select.all.menuProductsActive);
+        const activeProducts = document.querySelectorAll(select.all.menuProductsActive);
 
         /* if there is active product and it's not thisProduct.element, remove class active from it */
-        if(activeProduct != thisProduct.element) {
-          activeProduct.classList.remove(classNames.menuProduct.wrapperActive);
+        for(let activeProduct of activeProducts) {
+          if(activeProduct != thisProduct.element) {
+            activeProduct.classList.remove(classNames.menuProduct.wrapperActive);
+          }
         }
 
         /* toggle active class on thisProduct.element */
