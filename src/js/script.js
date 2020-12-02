@@ -65,6 +65,10 @@
 
       thisProduct.initAccordion(); // wywolanie metody initAccordion
 
+      thisProduct.initOrderForm();
+
+      thisProduct.processOrder();
+
       console.log('new Product:', thisProduct);
     } // klasa product za pomoca metody renderInMenu bierze dane zrodlowe produktu i wyrzuca je do szablonu - tak powstaje kod html pojedynczego produktu
 
@@ -119,6 +123,16 @@
         thisProduct.element.classList.toggle(classNames.menuProduct.wrapperActive);
 
       });
+    }
+
+    initOrderForm() {
+      const thisProduct = this;
+      console.log('initOrderForm:', initOrderForm);
+    }
+
+    processOrder() {
+      const thisProduct = this;
+      console.log('processOrder:', processOrder);
     }
   }
 
