@@ -96,6 +96,7 @@
       thisProduct.formInputs = thisProduct.form.querySelectorAll(select.all.formInputs);
       thisProduct.cartButton = thisProduct.element.querySelector(select.menuProduct.cartButton);
       thisProduct.priceElem = thisProduct.element.querySelector(select.menuProduct.priceElem);
+      thisProduct.imageWrapper = thisProduct.element.querySelector(select.menuProduct.imageWrapper); // do poprawy
     }
 
     initAccordion() { // deklaracja metody
@@ -191,8 +192,16 @@
 
               // reduce price variable
               price -= option.price;
-
             }
+          }
+          // find image
+          const optionImage = thisProduct.imageWrapper.querySelector('.paramId-optionId');
+
+          // check if the option is selected
+          if() {
+            optionImage.classList.add(classNames.menuProduct.imageVisible);
+          } else {
+            optionImage.classList.remove(classNames.menuProduct.imageVisible);
           }
         }
       }
