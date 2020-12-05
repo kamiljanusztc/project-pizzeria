@@ -195,13 +195,16 @@
             }
           }
           // find image
-          const optionImage = thisProduct.imageWrapper.querySelector('.paramId-optionId');
+          const optionImage = thisProduct.imageWrapper.querySelector('.' + paramId + '-' + optionId);
 
-          // check if the option is selected
-          if() {
-            optionImage.classList.add(classNames.menuProduct.imageVisible);
-          } else {
-            optionImage.classList.remove(classNames.menuProduct.imageVisible);
+          // check if found image
+          if(optionImage !== null) {
+            // check if the option is selected
+            if(formData[paramId] && formData[paramId].includes(optionId)) {
+              optionImage.classList.add(classNames.menuProduct.imageVisible);
+            } else {
+              optionImage.classList.remove(classNames.menuProduct.imageVisible);
+            }
           }
         }
       }
