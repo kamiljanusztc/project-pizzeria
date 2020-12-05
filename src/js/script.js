@@ -96,7 +96,8 @@
       thisProduct.formInputs = thisProduct.form.querySelectorAll(select.all.formInputs);
       thisProduct.cartButton = thisProduct.element.querySelector(select.menuProduct.cartButton);
       thisProduct.priceElem = thisProduct.element.querySelector(select.menuProduct.priceElem);
-      thisProduct.imageWrapper = thisProduct.element.querySelector(select.menuProduct.imageWrapper); // do poprawy
+      thisProduct.imageWrapper = thisProduct.element.querySelector(select.menuProduct.imageWrapper);
+      thisProduct.amountWidget = thisProduct.element.querySelector(select.menuProduct.amountWidget);
     }
 
     initAccordion() { // deklaracja metody
@@ -199,6 +200,7 @@
 
           // check if found image
           if(optionImage !== null) {
+
             // check if the option is selected
             if(formData[paramId] && formData[paramId].includes(optionId)) {
               optionImage.classList.add(classNames.menuProduct.imageVisible);
@@ -211,6 +213,15 @@
 
       // update calculated price in the HTML
       thisProduct.priceElem.innerHTML = price;
+    }
+  }
+
+  class AmountWidget {
+    constructor(element) {
+      const thisWidget = this;
+
+      console.log('AmountWidget:', thisWidget);
+      console.log('constructor arguments:', element);
     }
   }
 
