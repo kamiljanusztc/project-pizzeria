@@ -228,13 +228,15 @@
 
 
   class AmountWidget {
-    constructor(element) {
+    constructor(element) { // argument element jest referencja do elementu DOM (tego co thisProduct.amountWidgetElem)
       const thisWidget = this;
 
       console.log('AmountWidget:', thisWidget);
       console.log('constructor arguments:', element);
 
       thisWidget.getElements(element);
+
+      thisWidget.setValue(thisWidget.input.value);
     }
 
     getElements(element){
@@ -244,6 +246,40 @@
       thisWidget.input = thisWidget.element.querySelector(select.widgets.amount.input);
       thisWidget.linkDecrease = thisWidget.element.querySelector(select.widgets.amount.linkDecrease);
       thisWidget.linkIncrease = thisWidget.element.querySelector(select.widgets.amount.linkIncrease);
+    }
+
+    setValue(value) {  // funkcja odpowiada za dodawana wartosc
+      const thisWidget = this;
+
+      const newValue = parseInt(value); //parseInt zadba o konwersje '10' na liczbe 10 (poniewz kazdy input zwraca wartosc tekstowa)
+
+      /* TODO: Add validation */
+
+      thisWidget.value = newValue; // wartosc przekazanego argumentu po przekonwertowaniu go na liczbe
+      thisWidget.input.value = thisWidget.value; // aktualizuje wartosc samego inputu
+
+      if(thisWidget.value !== newValue && !isNaN(newValue)) {
+        thisWidget.value = newValue;
+      }
+    }
+
+    // ponizej dodanie reakakcji na eventy
+    initActions() {
+      const thisWidget = this;
+
+      thisWidget.input.addEventListener('change', function() {
+        thisWidget.setValue(thisWidget.input.value); //handl, argument w nawiasie
+      });
+
+      thisWidget.linkDecrease.addEventListener('click', function() {
+        event.preventDefault();
+        thisWidget.setValue(thisWidget.value - 1);
+      });
+
+      thisWidget.linkIncrease.addEventListener('click', function() {
+        event.preventDefault();
+        thisWidget.setValue(thisWidget.value + 1);
+      });
     }
   }
 
