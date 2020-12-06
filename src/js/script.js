@@ -67,7 +67,7 @@
 
       thisProduct.initOrderForm();
 
-      thisProduct.initAmountWidget();
+      thisProduct.initAmountWidget()
 
       thisProduct.processOrder();
 
@@ -215,6 +215,9 @@
         }
       }
 
+      /* multiply price by amount */
+      price *= thisProduct.amountWidget.value; // dzieki temu przed wyswietleniem ceny pomnozymy ja przez ilosc szt
+
       // update calculated price in the HTML
       thisProduct.priceElem.innerHTML = price;
     }
@@ -223,6 +226,11 @@
       const thisProduct = this;
 
       thisProduct.amountWidget = new AmountWidget(thisProduct.amountWidgetElem); //utworzenie nowej instancji klasy Amount Widget
+
+      thisProduct.amountWidgetElem.addEventListener('updated', function(event) {
+        event.preventDefault();
+        thisProduct.processOrder();
+      });
     }
   }
 
@@ -237,6 +245,8 @@
       thisWidget.getElements(element);
 
       thisWidget.setValue(thisWidget.input.value);
+
+      thisWidget.initActions();
     }
 
     getElements(element){
@@ -253,14 +263,12 @@
 
       const newValue = parseInt(value); //parseInt zadba o konwersje '10' na liczbe 10 (poniewz kazdy input zwraca wartosc tekstowa)
 
-      /* TODO: Add validation */
-
-      thisWidget.value = newValue; // wartosc przekazanego argumentu po przekonwertowaniu go na liczbe
-      thisWidget.input.value = thisWidget.value; // aktualizuje wartosc samego inputu
-
-      if(thisWidget.value !== newValue && !isNaN(newValue)) {
-        thisWidget.value = newValue;
+      if(thisWidget.value !== newValue && !isNaN(newValue) && newValue >= 1 && newValue <= 10) {
+        thisWidget.value = newValue; //wartosc przekazanego argumentu po przekonwertowaniu go na liczbe
       }
+
+      thisWidget.input.value = thisWidget.value; // aktualizuje wartosc samego inputu
+      thisWidget.announce();
     }
 
     // ponizej dodanie reakakcji na eventy
@@ -271,15 +279,22 @@
         thisWidget.setValue(thisWidget.input.value); //handl, argument w nawiasie
       });
 
-      thisWidget.linkDecrease.addEventListener('click', function() {
+      thisWidget.linkDecrease.addEventListener('click', function(event) {
         event.preventDefault();
         thisWidget.setValue(thisWidget.value - 1);
       });
 
-      thisWidget.linkIncrease.addEventListener('click', function() {
+      thisWidget.linkIncrease.addEventListener('click', function(event) {
         event.preventDefault();
         thisWidget.setValue(thisWidget.value + 1);
       });
+    }
+
+    announce() { //metoda tworzaca instancje klasy event - wbudowanej w silnik js / przegladarke
+      const thisWidget = this;
+
+      const event = new Event('updated');
+      thisWidget.element.dispatchEvent(event);
     }
   }
 
