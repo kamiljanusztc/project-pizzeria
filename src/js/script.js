@@ -275,7 +275,7 @@
     addToCart() { // metoda przekazuje cala instancje jako argument metody app.cart.add
       const thisProduct = this;
 
-      app.cart.add(thisProduct.data.params);
+      app.cart.add(thisProduct.prepareCartProduct()); // przekazuje do koszuka dane produktu
     }
 
     prepareCartProduct() {
@@ -309,7 +309,7 @@
 
         // create category param in params const eg. params = { ingredients: { name: 'Ingredients', options: {}}}
         params[paramId] = {
-          name: param.label,
+          label: param.label,
           options: {}
         };
 
@@ -325,12 +325,12 @@
           if(optionSelected) {
 
             //option is selected!
-            params[paramId].options += params.name; // do sprawdzenia
+            params[paramId].options[optionId] = option.label; //
           }
-
-          return params;
         }
       }
+
+      return params;
     }
   }
 
