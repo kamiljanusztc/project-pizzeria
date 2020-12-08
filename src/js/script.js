@@ -105,7 +105,7 @@
 
       thisProduct.processOrder();
 
-      console.log('new Product:', thisProduct);
+      //console.log('new Product:', thisProduct);
     } // klasa product za pomoca metody renderInMenu bierze dane zrodlowe produktu i wyrzuca je do szablonu - tak powstaje kod html pojedynczego produktu
 
     //metoda renderInMenu szykuje nam wlasciwosc thisProduct.element
@@ -169,7 +169,7 @@
 
     initOrderForm() { // metoda odpowiedzialna za dodanie listenerow eventow do formularza, jego kontrolek i guzika dodania do koszyka
       const thisProduct = this;
-      console.log(this.initOrderForm);
+      //console.log(this.initOrderForm);
 
       thisProduct.form.addEventListener('submit', function(event){
         event.preventDefault();
@@ -189,16 +189,16 @@
       });
 
       const formData = utils.serializeFormToObject(thisProduct.form);
-      console.log('formData', formData);
+      //console.log('formData', formData);
     }
 
     processOrder() {
       const thisProduct = this;
-      console.log(this.processOrder);
+      //console.log(this.processOrder);
 
       // covert form to object structure e.g. { sauce: ['tomato'], toppings: ['olives', 'redPeppers']}
       const formData = utils.serializeFormToObject(thisProduct.form);
-      console.log('formData', formData);
+      //console.log('formData', formData);
 
       // set price to default price
       let price = thisProduct.data.price;
@@ -208,14 +208,14 @@
 
         // determine param value, e.g. paramId = 'toppings', param = { label: 'Toppings', type: 'checkboxes'... }
         const param = thisProduct.data.params[paramId];
-        console.log(paramId, param);
+        //console.log(paramId, param);
 
         // for every option in this category
         for(let optionId in param.options) {
 
           // determine option value, e.g. optionId = 'olives', option = { label: 'Olives', price: 2, default: true }
           const option = param.options[optionId];
-          console.log(optionId, option);
+          //console.log(optionId, option);
 
           // check if there is param with a name of paramId in formData and if it includes optionId
           if(formData[paramId] && formData[paramId].includes(optionId)) {
@@ -305,7 +305,7 @@
 
         // determine param value, e.g. paramId = 'toppings', param = { label: 'Toppings', type: 'checkboxes'... }
         const param = thisProduct.data.params[paramId];
-        console.log(paramId, param);
+        //console.log(paramId, param);
 
         // create category param in params const eg. params = { ingredients: { name: 'Ingredients', options: {}}}
         params[paramId] = {
@@ -318,7 +318,7 @@
 
           // determine option value, e.g. optionId = 'olives', option = { label: 'Olives', price: 2, default: true }
           const option = param.options[optionId];
-          console.log(optionId, option);
+          //console.log(optionId, option);
 
           const optionSelected = formData[paramId] && formData[paramId].includes(optionId);
 
@@ -339,8 +339,8 @@
     constructor(element) { // argument element jest referencja do elementu DOM (tego co thisProduct.amountWidgetElem)
       const thisWidget = this;
 
-      console.log('AmountWidget:', thisWidget);
-      console.log('constructor arguments:', element);
+      //console.log('AmountWidget:', thisWidget);
+      //console.log('constructor arguments:', element);
 
       thisWidget.getElements(element);
 
@@ -398,7 +398,7 @@
     }
   }
 
-  class Cart {           // zajmuje sie calym koszykie, jego funkcjonalnosciami
+  class Cart { // zajmuje sie calym koszykie, jego funkcjonalnosciami
     constructor(element) {
       const thisCart = this;
 
@@ -408,13 +408,19 @@
 
       thisCart.initActions();
 
-      console.log('new Cart', thisCart);
+      //console.log('new Cart', thisCart);
     }
 
     getElements(element) {
       const thisCart = this;
 
-      thisCart.dom = {}; // chowamy referencje elementow DOM do tego obiektu
+      thisCart.dom = {
+        //deliveryFee = thisCart.deliveryFee,
+        //subtotalPrice = let totalNumber,
+        //totalPrice =
+        //totalNumber =
+
+      }; // chowamy referencje elementow DOM do tego obiektu
 
       thisCart.dom.wrapper = element;
 
@@ -446,7 +452,34 @@
       thisCart.products.push(new CartProduct(menuProduct, generatedDOM)); // zapis obiektu do tablicy, jednoczesnie tworzymy nowa instancje klasy new CartProduct i dodamy ja do tablicy thisCart.Products
       // dzieki powyzszej linijce bedziemy mieli staly dostep do instancji wszystkich produktow
 
-      console.log('thisCart.products', thisCart.products);
+      this.update();
+
+      //console.log('thisCart.products', thisCart.products);
+    }
+
+    update() {
+      const thisCart = this;
+
+      const deliveryFee = settings.cart.defaultDeliveryFee;
+
+      const totalNumber = 0;
+
+      const subtotalPrice = 0;
+
+      for(let product of thisCart.products) {
+        totalNumber += product.amount;
+        subtotalPrice += product.price;
+      }
+
+      if(totalNumber > 0) {
+        thisCart.totalPrice = subtotalPrice + deliveryFee;
+      } else {
+        thisCart.totalPrice = 0;
+      }
+      console.log(deliveryFee);
+      console.log(totalNumber);
+      console.log(subtotalPrice);
+      console.log(thisCart.totalPrice);
     }
   }
 
@@ -465,7 +498,7 @@
 
       thisCartProduct.initAmountWidget();
 
-      console.log(thisCartProduct);
+      //console.log(thisCartProduct);
     }
 
     getElements(element) { //aby przygotowac referencje do elementow HTML
@@ -501,7 +534,7 @@
 
     initMenu: function() {
       const thisApp = this;
-      console.log('thisApp.data:', thisApp.data);
+      //console.log('thisApp.data:', thisApp.data);
 
       for(let productData in thisApp.data.products) {
         new Product(productData, thisApp.data.products[productData]);
@@ -510,11 +543,11 @@
 
     init: function(){
       const thisApp = this;
-      console.log('*** App starting ***');
+      /* console.log('*** App starting ***');
       console.log('thisApp:', thisApp);
       console.log('classNames:', classNames);
       console.log('settings:', settings);
-      console.log('templates:', templates);
+      console.log('templates:', templates); */
 
       thisApp.initData();
 
