@@ -189,7 +189,7 @@
       });
 
       const formData = utils.serializeFormToObject(thisProduct.form);
-      //console.log('formData', formData);
+      console.log('formData', formData);
     }
 
     processOrder() {
@@ -393,7 +393,10 @@
     announce() { //metoda tworzaca instancje klasy event - wbudowanej w silnik js / przegladarke
       const thisWidget = this;
 
-      const event = new Event('updated');
+      const event = new CustomEvent('updated', {
+        bubbles: true    //wlaczamy wlasciwosc bubbles - event bedzie emitowany na tym elemencie, rodzicu itp az do body, document, window
+      });
+
       thisWidget.element.dispatchEvent(event);
     }
   }
@@ -414,19 +417,17 @@
     getElements(element) {
       const thisCart = this;
 
-      thisCart.dom = {
-        //deliveryFee = thisCart.deliveryFee,
-        //subtotalPrice = let totalNumber,
-        //totalPrice =
-        //totalNumber =
-
-      }; // chowamy referencje elementow DOM do tego obiektu
+      thisCart.dom = {}; // chowamy referencje elementow DOM do tego obiektu
 
       thisCart.dom.wrapper = element;
 
       thisCart.dom.toggleTrigger = thisCart.dom.wrapper.querySelector(select.cart.toggleTrigger);
-
       thisCart.dom.productList = thisCart.dom.wrapper.querySelector(select.cart.productList);
+      thisCart.dom.deliveryFee = thisCart.dom.wrapper.querySelector(select.cart.deliveryFee);
+      thisCart.dom.subtotalPrice = thisCart.dom.wrapper.querySelector(select.cart.subtotalPrice);
+      thisCart.dom.totalPrice = thisCart.dom.wrapper.querySelectorAll(select.cart.totalPrice);
+      thisCart.dom.totalNumber = thisCart.dom.wrapper.querySelector(select.cart.totalNumber);
+
     }
 
     initActions() {
@@ -434,6 +435,10 @@
 
       thisCart.dom.toggleTrigger.addEventListener('click', function() {
         thisCart.dom.wrapper.classList.toggle(classNames.cart.wrapperActive);
+      });
+
+      thisCart.dom.productList.addEventListener('updated', function() { //nasluchujemy na liste produktow. dzieki BUBBLES uslyszymy go na tej liscie
+        thisCart.update();
       });
     }
 
@@ -462,9 +467,9 @@
 
       const deliveryFee = settings.cart.defaultDeliveryFee;
 
-      const totalNumber = 0;
+      let totalNumber = 0;
 
-      const subtotalPrice = 0;
+      let subtotalPrice = 0;
 
       for(let product of thisCart.products) {
         totalNumber += product.amount;
@@ -475,11 +480,22 @@
         thisCart.totalPrice = subtotalPrice + deliveryFee;
       } else {
         thisCart.totalPrice = 0;
+        deliveryFee = 0;
       }
+
       console.log(deliveryFee);
       console.log(totalNumber);
       console.log(subtotalPrice);
       console.log(thisCart.totalPrice);
+
+      for(let price of thisCart.dom.totalPrice) {
+        price.innerHTML = thisCart.totalPrice;
+      }
+
+      thisCart.dom.totalNumber.innerHTML = totalNumber;
+      thisCart.dom.deliveryFee.innerHTML = deliveryFee;
+      thisCart.dom.subtotalPrice.innerHTML = subtotalPrice;
+      //aktualizacja w koszyku
     }
   }
 
@@ -495,8 +511,8 @@
       thisCartProduct.params = menuProduct.params;
 
       thisCartProduct.getElements(element);
-
       thisCartProduct.initAmountWidget();
+      thisCartProduct.initActions();
 
       //console.log(thisCartProduct);
     }
@@ -522,6 +538,33 @@
         thisCartProduct.amount = thisCartProduct.amountWidget.value;
         thisCartProduct.price = thisCartProduct.priceSingle * thisCartProduct.amount;
         thisCartProduct.dom.price.innerHTML = thisCartProduct.price;
+      });
+    }
+
+    remove() {
+      const thisCartProduct = this;
+
+      const event = new CustomEvent('remove', {
+        bubbles: true,
+        detail: {  // info do handlera eventu - co dokladnie trzeba usunac
+          cartProduct: thisCartProduct,
+        },
+      });
+
+      thisCartProduct.dom.wrapper.dispatchEvent(event);
+    }
+
+    initActions() {
+      const thisCartProduct = this;
+
+      thisCartProduct.dom.edit.addEventListener('click', function() {
+        event.preventDefault();
+      });
+
+      thisCartProduct.dom.remove.addEventListener('click', function() {
+        event.preventDefault();
+
+        thisCartProduct.remove();
       });
     }
   }
