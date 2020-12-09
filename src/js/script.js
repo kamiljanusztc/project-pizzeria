@@ -440,6 +440,10 @@
       thisCart.dom.productList.addEventListener('updated', function() { //nasluchujemy na liste produktow. dzieki BUBBLES uslyszymy go na tej liscie
         thisCart.update();
       });
+
+      thisCart.dom.productList.addEventListener('remove', function(event) {
+        thisCart.remove(event.detail.cartProduct);
+      });
     }
 
     add(menuProduct) { // metoda ta otrzyma odwolanie (referencje) do instancji klasy cart
@@ -465,7 +469,7 @@
     update() {
       const thisCart = this;
 
-      const deliveryFee = settings.cart.defaultDeliveryFee;
+      let deliveryFee = settings.cart.defaultDeliveryFee;
 
       let totalNumber = 0;
 
@@ -496,6 +500,25 @@
       thisCart.dom.deliveryFee.innerHTML = deliveryFee;
       thisCart.dom.subtotalPrice.innerHTML = subtotalPrice;
       //aktualizacja w koszyku
+    }
+
+    remove(CartProduct) {
+      const thisCart = this;
+
+      // usuniecie reprezentacji produktu z htmla
+      CartProduct.dom.wrapper.remove();
+
+      // usuniecie info o danym produkcie z tablicy thisCart.products
+      const indexOfProduct = thisCart.products.indexOf(CartProduct);
+      console.log(indexOfProduct);
+
+      const removedValues = thisCart.products.splice(indexOfProduct, 1);
+      console.log(removedValues);
+      console.log(thisCart.products);
+
+      //wywyolanie metody update w celu przeliczenia sum po usunieciu produktu
+      thisCart.update();
+
     }
   }
 
@@ -566,6 +589,8 @@
 
         thisCartProduct.remove();
       });
+
+      console.log(thisCartProduct.remove);
     }
   }
 
