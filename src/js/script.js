@@ -547,12 +547,22 @@
         totalNumber: thisCart.totalNumber,
         deliveryFee: thisCart.deliveryFee,
         products: []
-      }
+      };
       console.log('playload:', payload);
 
       for(let prod of thisCart.products) {
         payload.products.push(prod.getData()); //dodajemy obiekty podsymowania
       }
+
+      const options = {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload),
+      };
+
+      fetch(url, options);
     }
   }
 
@@ -637,7 +647,9 @@
         priceSingle: thisCartProduct.priceSingle,
         name: thisCartProduct.name,
         params: thisCartProduct.params,
-      }
+      };
+      console.log('productForm:', productForm);
+      return productForm;
     }
   }
 
