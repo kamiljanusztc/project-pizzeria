@@ -613,7 +613,7 @@
           console.log('parsedResponse', parsedResponse); //po otrzymaniu odpowiedzi wyswietla ja w konsoli
 
           /* save parsedResponse as thisApp.data.products */
-          thisApp.data.product = parsedResponse;
+          thisApp.data.products = parsedResponse;
 
           /* execute initMenu method */
           thisApp.initMenu();
