@@ -77,6 +77,11 @@
       defaultDeliveryFee: 20,
     },
     // CODE ADDED END
+    db: {  // konfiguracja parametrow do laczenia sie z API
+      url: '//localhost:3131',
+      product: 'product',
+      order: 'order',
+    },
   };
 
   const templates = {
@@ -597,7 +602,24 @@
   const app = {
     initData: function() {
       const thisApp = this;
-      thisApp.data = dataSource; //reference (address) to data
+      thisApp.data = {};
+      const url = settings.db.url + '/' + settings.db.product;
+
+      fetch(url) // wysylamy  zapytanie na podany adres endopointu
+        .then(function(rawResponse) { // funkcja uruchomi sie wtedy gdy request sie zakonczy, a serwer zwroci odpowiedz / konwertuje dane do obiektu js
+          return rawResponse.json();
+        })
+        .then(function(parsedResponse) {
+          console.log('parsedResponse', parsedResponse); //po otrzymaniu odpowiedzi wyswietla ja w konsoli
+
+          /* save parsedResponse as thisApp.data.products */
+          thisApp.data.product = parsedResponse;
+
+          /* execute initMenu method */
+          thisApp.initMenu();
+
+        });
+      console.log('thisApp.data', JSON.stringify(thisApp.data));
     },
 
     initMenu: function() {
@@ -605,7 +627,7 @@
       //console.log('thisApp.data:', thisApp.data);
 
       for(let productData in thisApp.data.products) {
-        new Product(productData, thisApp.data.products[productData]);
+        new Product(thisApp.data.products[productData].id, thisApp.data.products[productData]);
       }
     },
 
@@ -618,8 +640,6 @@
       console.log('templates:', templates); */
 
       thisApp.initData();
-
-      thisApp.initMenu();
 
       thisApp.initCart();
     },
