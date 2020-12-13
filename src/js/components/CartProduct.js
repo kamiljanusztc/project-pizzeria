@@ -1,5 +1,5 @@
-import {select} from './settings.js';
-import AmountWidget from './components/AmountWidget.js';
+import {select} from '../settings.js';
+import AmountWidget from './AmountWidget.js';
 
 class CartProduct {
   constructor(menuProduct, element) {   // pierwszy argument przyjmuje referencje do obiektu podsumowania, drugi do utworzonego dla niego produktu elementu HTML (generatedDOM)

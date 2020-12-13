@@ -1,5 +1,4 @@
-import { settings } from '../settings.js';
-import {select} from './settings.js';
+import {select, settings} from '../settings.js';
 
 class AmountWidget {
   constructor(element) { // argument element jest referencja do elementu DOM (tego co thisProduct.amountWidgetElem)
