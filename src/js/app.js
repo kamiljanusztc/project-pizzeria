@@ -58,7 +58,7 @@ const app = {
 
     thisApp.productList.addEventListener('add-to-cart', function(event) { // (event, handler)
       app.cart.add(event.detail.product);
-    })
+    });
   },
 };
 
