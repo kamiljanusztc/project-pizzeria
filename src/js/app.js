@@ -1,8 +1,68 @@
-import {settings, select} from './settings.js';
+import {settings, select, classNames} from './settings.js';
 import Product from './components/Product.js';
 import Cart from './components/Cart.js';
+import Booking from './components/Booking.js';
 
 const app = {
+  initPages: function() { // uruchamiana w momencie odswiezenia strony
+    const thisApp = this;
+
+    // wszystkie dzieci kontenera stron - id other i booking z index html
+    thisApp.pages = domunet.querySelector(select.containerOf.pages).children; //do przechowania kontenerow podstron, ktore wyszukamy w DOM - dzieki children znajdziemy wszystkie dzieci
+    thisApp.navLinks = domunet.querySelectorAll(select.nav.links); // find links
+
+    constr idFromHash = window.location.hash.replace('#/', '');
+
+    let pageMatchingHash = thisApp.pages[0].id; //kiedy adres hash nie pasuje do id zadnej podstrony ot aktywuje sie pierwsza z nich
+
+    // find subpage with id
+    for(lte page of thisApp.pages) {
+      if(page.id == idFromHash) {
+        pageMatchingHash = page.id;
+        break; // nie zostana wykonane kolejne iteracje petli
+      }
+    }
+
+    thisApp.activatePage(idFromHash);
+
+    for(let link of thisApp.navLinks) {
+      link.addEventListener('click', function(event) {
+        const clickedElement = this;
+        event.preventDefault();
+
+         /* get page id from href attribute */
+         const id = clickedElement.getAttribute('href').replace("#", ''); // w stalej id zapisujemy atrybut href kliknietego el., w ktorym zamienimy # na pusty ciag znakow czyli order lub booking
+
+         /* run thisApp.activatePage with thad id */
+        thisApp.activatePage(id); // wywolanie metody activate Page podajac jej wydobyte z hrefu id
+
+        /* change URL hash-koncowka adresu strony */
+        window.location.hash = '#/' + id; // slash dodajemy aby strona automatycznie nie przewijala sie w dol
+      });
+    }
+  },
+
+  activatePage: function(pageId) { //aktywowanie podstrony
+    const thisApp = this;
+
+    /* add class "active" to matching pages, remove from non-matching */
+    for(let page of thisApp.pages) {
+      // if(page.id == pageId) {
+      //   page.classList.add(classNames.pages.active);
+      // } else {
+      //   page.classList.remove(classNames.pages.active);
+      // }
+      page.classList.toggle(classNames.pages.active, page.id == pageId); //ostatni argument koontroluje czy klasa zostanie nadana czy nie
+    }
+    /* add class "active" to matching links, remove from non-matching */
+    for(let link of thisApp.navLinks) { // for all links in nave links
+      link.classList.toggle( //we want add or remove
+        classNames.nav.active, // class in className.nav.active
+        link.getAttribute('href') == '#' + pageId //if link href of this link = '#' and pageId
+        );
+    }
+  }
+
   initData: function() {
     const thisApp = this;
     thisApp.data = {};
@@ -42,9 +102,13 @@ const app = {
     console.log('settings:', settings);
     console.log('templates:', templates); */
 
+    thisApp.initPages();
+
     thisApp.initData();
 
     thisApp.initCart();
+
+    thisApp.initBooking();
   },
 
   initCart: function () {
@@ -60,6 +124,14 @@ const app = {
       app.cart.add(event.detail.product);
     });
   },
+
+  initBooking: function() {
+    const thisApp = this;
+
+    thisApp.bookingWrapper = document.querySelector(select.containerOf.booking);
+    thisApp.booking = new Booking(bookingElem); // tworzymy nowa instancje
+
+  }
 };
 
 app.init();
