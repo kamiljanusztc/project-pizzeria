@@ -8,15 +8,15 @@ const app = {
     const thisApp = this;
 
     // wszystkie dzieci kontenera stron - id other i booking z index html
-    thisApp.pages = domunet.querySelector(select.containerOf.pages).children; //do przechowania kontenerow podstron, ktore wyszukamy w DOM - dzieki children znajdziemy wszystkie dzieci
-    thisApp.navLinks = domunet.querySelectorAll(select.nav.links); // find links
+    thisApp.pages = document.querySelector(select.containerOf.pages).children; //do przechowania kontenerow podstron, ktore wyszukamy w DOM - dzieki children znajdziemy wszystkie dzieci
+    thisApp.navLinks = document.querySelectorAll(select.nav.links); // find links
 
-    constr idFromHash = window.location.hash.replace('#/', '');
+    const idFromHash = window.location.hash.replace('#/', '');
 
     let pageMatchingHash = thisApp.pages[0].id; //kiedy adres hash nie pasuje do id zadnej podstrony ot aktywuje sie pierwsza z nich
 
     // find subpage with id
-    for(lte page of thisApp.pages) {
+    for(let page of thisApp.pages) {
       if(page.id == idFromHash) {
         pageMatchingHash = page.id;
         break; // nie zostana wykonane kolejne iteracje petli
@@ -30,10 +30,10 @@ const app = {
         const clickedElement = this;
         event.preventDefault();
 
-         /* get page id from href attribute */
-         const id = clickedElement.getAttribute('href').replace("#", ''); // w stalej id zapisujemy atrybut href kliknietego el., w ktorym zamienimy # na pusty ciag znakow czyli order lub booking
+        /* get page id from href attribute */
+        const id = clickedElement.getAttribute('href').replace("#", ''); // w stalej id zapisujemy atrybut href kliknietego el., w ktorym zamienimy # na pusty ciag znakow czyli order lub booking
 
-         /* run thisApp.activatePage with thad id */
+        /* run thisApp.activatePage with that id */
         thisApp.activatePage(id); // wywolanie metody activate Page podajac jej wydobyte z hrefu id
 
         /* change URL hash-koncowka adresu strony */
@@ -59,9 +59,9 @@ const app = {
       link.classList.toggle( //we want add or remove
         classNames.nav.active, // class in className.nav.active
         link.getAttribute('href') == '#' + pageId //if link href of this link = '#' and pageId
-        );
+      );
     }
-  }
+  },
 
   initData: function() {
     const thisApp = this;
@@ -129,7 +129,7 @@ const app = {
     const thisApp = this;
 
     thisApp.bookingWrapper = document.querySelector(select.containerOf.booking);
-    thisApp.booking = new Booking(bookingElem); // tworzymy nowa instancje
+    thisApp.booking = new Booking(element); // tworzymy nowa instancje
 
   }
 };
