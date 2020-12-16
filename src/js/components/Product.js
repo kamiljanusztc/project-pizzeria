@@ -191,6 +191,10 @@ class Product {
   addToCart() { // metoda przekazuje cala instancje jako argument metody app.cart.add
     const thisProduct = this;
 
+    thisProduct.name = thisProduct.data.name;
+    thisProduct.amount = thisProduct.amountWidget.value;
+    thisProduct.price = thisProduct.priceTotal;
+
     //app.cart.add(thisProduct.prepareCartProduct()); // przekazuje do koszyka dane produktu
 
     const event = new CustomEvent('add-to-cart', {
