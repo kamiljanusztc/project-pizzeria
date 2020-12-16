@@ -1,24 +1,40 @@
+import {select, templates} from '../settings.js';
+import AmountWidget from './AmountWidget.js';
+
 class Booking {
   constructor(element) {
     const thisBooking = this;
 
-    thisBooking.render();
+    thisBooking.render(element);
     thisBooking.initWidgets();
 
-    thisBooking.bookingWrapper;
   }
 
-}
+  render(element) {
+    const thisBooking = this;
 
-render() {
+    // generate HTML
+    const generatedHTML = templates.bookingWidget();
 
-  // generate HTML
+    // create empty object
+    thisBooking.dom = {};
 
-  // create empty object
+    // add wrapper to object
+    thisBooking.dom.wrapper = element;
 
-  // add wrapper to object
+    // change wrapper content to generated HTML
+    thisBooking.dom.wrapper.innerHTML = generatedHTML;
 
-  // change wrapper content to generated HTML
+    thisBooking.dom.peopleAmount = document.querySelector(select.booking.peopleAmount); // tbd
+    thisBooking.dom.hoursAmount = document.querySelector(select.booking.hoursAmount);
+  }
+
+  initWidgets() {
+    const thisBooking = this;
+
+
+  }
+
 }
 
 export default Booking;

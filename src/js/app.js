@@ -128,9 +128,8 @@ const app = {
   initBooking: function() {
     const thisApp = this;
 
-    thisApp.bookingWrapper = document.querySelector(select.containerOf.booking);
-    thisApp.booking = new Booking(element); // tworzymy nowa instancje
-
+    thisApp.bookingWidget = document.querySelector(select.containerOf.booking);
+    thisApp.booking = new Booking(bookingWidget); // tworzymy nowa instancje
   }
 };
 
