@@ -32,14 +32,16 @@ class Booking {
   initWidgets() {
     const thisBooking = this;
 
-    thisBooking.peopleAmount = AmountWidget(thisBooking.dom.peopleAmount);
-    thisBooking.hoursAmount = AmountWidget(thisBooking.dom.hoursAmount);
+    thisBooking.peopleAmount = new AmountWidget(thisBooking.dom.peopleAmount);
+    thisBooking.hoursAmount =  new AmountWidget(thisBooking.dom.hoursAmount);
 
-    thisBooking.dom.peopleAmount.addEventListener('', function() {
+    thisBooking.dom.wrapper.addEventListener('updated', function() {
+
 
     });
 
-    thisBooking.dom.hoursAmount.addEventListener('', function() {
+    thisBooking.dom.hoursAmount.addEventListener('click', function() {
+
 
     });
   }
@@ -47,4 +49,3 @@ class Booking {
 }
 
 export default Booking;
-

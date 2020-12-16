@@ -23,7 +23,7 @@ const app = {
       }
     }
 
-    thisApp.activatePage(idFromHash);
+    thisApp.activatePage(pageMatchingHash);
 
     for(let link of thisApp.navLinks) {
       link.addEventListener('click', function(event) {
@@ -31,7 +31,7 @@ const app = {
         event.preventDefault();
 
         /* get page id from href attribute */
-        const id = clickedElement.getAttribute('href').replace("#", ''); // w stalej id zapisujemy atrybut href kliknietego el., w ktorym zamienimy # na pusty ciag znakow czyli order lub booking
+        const id = clickedElement.getAttribute('href').replace('#', ''); // w stalej id zapisujemy atrybut href kliknietego el., w ktorym zamienimy # na pusty ciag znakow czyli order lub booking
 
         /* run thisApp.activatePage with that id */
         thisApp.activatePage(id); // wywolanie metody activate Page podajac jej wydobyte z hrefu id
@@ -128,7 +128,7 @@ const app = {
   initBooking: function() {
     const thisApp = this;
 
-    thisApp.bookingWidget = document.querySelector(select.containerOf.booking);
+    const bookingWidget = document.querySelector(select.containerOf.booking);
     thisApp.booking = new Booking(bookingWidget); // tworzymy nowa instancje
   }
 };
