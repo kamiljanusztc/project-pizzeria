@@ -1,7 +1,7 @@
 import {select, settings} from '../settings.js';
 import BaseWidget from './BaseWidget.js';
 
-class AmountWidget extends BaseWidget{  // to info, ze AmountWidget jest rozszerzeniem BaseWidget
+class AmountWidget extends BaseWidget {  // to info, ze AmountWidget jest rozszerzeniem BaseWidget
   constructor(element) { // argument element jest referencja do elementu DOM (tego co thisProduct.amountWidgetElem)
     super(element, settings.amountWidget.defaultValue); // super - oznacza konstruktor klasy BaseWidget (konstruktora klasy nadrzednej)
 
