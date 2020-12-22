@@ -3,7 +3,7 @@ import BaseWidget from './BaseWidget.js';
 
 class AmountWidget extends BaseWidget{  // to info, ze AmountWidget jest rozszerzeniem BaseWidget
   constructor(element) { // argument element jest referencja do elementu DOM (tego co thisProduct.amountWidgetElem)
-    super(element, settings.amountWidget.defaultValue); // super - oznacza konstruktor klasy BaseWidget
+    super(element, settings.amountWidget.defaultValue); // super - oznacza konstruktor klasy BaseWidget (konstruktora klasy nadrzednej)
 
     const thisWidget = this;
 
@@ -11,7 +11,7 @@ class AmountWidget extends BaseWidget{  // to info, ze AmountWidget jest rozszer
 
     thisWidget.initActions();
 
-    console.log('AmountWidget:', thisWidget);
+    // console.log('AmountWidget:', thisWidget);
   }
 
   getElements() {
@@ -39,7 +39,7 @@ class AmountWidget extends BaseWidget{  // to info, ze AmountWidget jest rozszer
     const thisWidget = this;
 
     thisWidget.dom.input.addEventListener('change', function() {
-      thisWidget.setValue(thisWidget.dom.input.value); //handl, argument w nawiasie
+      thisWidget.value(thisWidget.dom.input.value); //handl, argument w nawiasie
     });
 
     thisWidget.dom.linkDecrease.addEventListener('click', function(event) {

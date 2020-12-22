@@ -5,7 +5,7 @@ class BaseWidget {
     thisWidget.dom = {}; // all dom elements for our app
     thisWidget.dom.wrapper = wrapperElement;
 
-    thisWidget.value = initialValue;
+    thisWidget.correctValue = initialValue;
   }
 
   get value() { // metoda wykonywana przy kazdej probie odczytania wlasciwosci value
@@ -14,7 +14,7 @@ class BaseWidget {
     return thisWidget.correctValue;
   }
 
-  set value(value) {  // wykonywana przy probie ustawienia nowej wartosci wlasciwosci value
+  set value(value) {   // wykonywana przy probie ustawienia nowej wartosci wlasciwosci value
     const thisWidget = this;
 
     const newValue = thisWidget.parseValue(value); //parseInt zadba o konwersje '10' na liczbe 10 (poniewz kazdy input zwraca wartosc tekstowa)
@@ -25,6 +25,12 @@ class BaseWidget {
     }
 
     thisWidget.renderValue();
+  }
+
+  setValue(value) {
+    const thisWidget = this;
+
+    thisWidget.value = value; // zostanie wykonany setter, ktory ustawi nowa wartosc tylko jesli jest poprawna
   }
 
   parseValue(value) { // przeksztalci wartosc na odpowiedni typ lub format
