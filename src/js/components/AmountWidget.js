@@ -1,69 +1,58 @@
 import {select, settings} from '../settings.js';
+import BaseWidget from './BaseWidget.js';
 
-class AmountWidget {
+class AmountWidget extends BaseWidget{  // to info, ze AmountWidget jest rozszerzeniem BaseWidget
   constructor(element) { // argument element jest referencja do elementu DOM (tego co thisProduct.amountWidgetElem)
-    const thisWidget = this;
+    super(element, settings.amountWidget.defaultValue); // super - oznacza konstruktor klasy BaseWidget
 
-    //console.log('AmountWidget:', thisWidget);
-    //console.log('constructor arguments:', element);
+    const thisWidget = this;
 
     thisWidget.getElements(element);
 
-    thisWidget.setValue(settings.amountWidget.defaultValue);
-
     thisWidget.initActions();
+
+    console.log('AmountWidget:', thisWidget);
   }
 
-  getElements(element) {
+  getElements() {
     const thisWidget = this;
 
-    thisWidget.element = element;
-    thisWidget.input = thisWidget.element.querySelector(select.widgets.amount.input);
-    thisWidget.linkDecrease = thisWidget.element.querySelector(select.widgets.amount.linkDecrease);
-    thisWidget.linkIncrease = thisWidget.element.querySelector(select.widgets.amount.linkIncrease);
+    thisWidget.dom.input = thisWidget.dom.wrapper.querySelector(select.widgets.amount.input);
+    thisWidget.dom.linkDecrease = thisWidget.dom.wrapper.querySelector(select.widgets.amount.linkDecrease);
+    thisWidget.dom.linkIncrease = thisWidget.dom.wrapper.querySelector(select.widgets.amount.linkIncrease);
   }
 
-  setValue(value) {  // funkcja odpowiada za dodawana wartosc
+  isValid(value) {
+    return !isNaN(value)
+    && value >= settings.amountWidget.defaultMin
+    && value <= settings.amountWidget.defaultMax; // funkcja isNaN sprawdza czy przekazana wartosc jest Not a Number
+  }
+
+  renderValue() { //biezaca wartosc widgetu bedzie wyswietlana na stronie
     const thisWidget = this;
 
-    const newValue = parseInt(value); //parseInt zadba o konwersje '10' na liczbe 10 (poniewz kazdy input zwraca wartosc tekstowa)
-
-    if(thisWidget.value !== newValue && !isNaN(newValue) && newValue >= 1 && newValue <= 10) {
-      thisWidget.value = newValue; //wartosc przekazanego argumentu po przekonwertowaniu go na liczbe
-    }
-
-    thisWidget.input.value = thisWidget.value; // aktualizuje wartosc samego inputu
-    thisWidget.announce();
+    thisWidget.dom.input.value = thisWidget.value; // aktualizuje wartosc samego inputu
   }
 
   // ponizej dodanie reakakcji na eventy
   initActions() {
     const thisWidget = this;
 
-    thisWidget.input.addEventListener('change', function() {
-      thisWidget.setValue(thisWidget.input.value); //handl, argument w nawiasie
+    thisWidget.dom.input.addEventListener('change', function() {
+      thisWidget.setValue(thisWidget.dom.input.value); //handl, argument w nawiasie
     });
 
-    thisWidget.linkDecrease.addEventListener('click', function(event) {
+    thisWidget.dom.linkDecrease.addEventListener('click', function(event) {
       event.preventDefault();
       thisWidget.setValue(thisWidget.value - 1);
     });
 
-    thisWidget.linkIncrease.addEventListener('click', function(event) {
+    thisWidget.dom.linkIncrease.addEventListener('click', function(event) {
       event.preventDefault();
       thisWidget.setValue(thisWidget.value + 1);
     });
   }
 
-  announce() { //metoda tworzaca instancje klasy event - wbudowanej w silnik js / przegladarke
-    const thisWidget = this;
-
-    const event = new CustomEvent('updated', {
-      bubbles: true    //wlaczamy wlasciwosc bubbles - event bedzie emitowany na tym elemencie, rodzicu itp az do body, document, window
-    });
-
-    thisWidget.element.dispatchEvent(event);
-  }
 }
 
 export default AmountWidget;
