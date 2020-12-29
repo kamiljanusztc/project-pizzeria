@@ -173,6 +173,11 @@
       }
 
     }
+
+    &.selected-table {
+      background-color: #ff6b6b;
+      color: #fff;
+    }
   }
 
   [data-table="1"] {

@@ -201,6 +201,22 @@ class Booking {
     });
   }
 
+  initActions() {
+    const thisBooking = this;
+
+    // add listener to clicked table
+    thisBooking.table.addEventListener('click', function (event) {
+      event.preventDefault();
+
+      const clickedElement = event.target;
+
+      // check if the table is free
+      if(clickedElement.classList.contains('booked')) {
+        thisBooking.table; // tbd
+      }
+    });
+  }
+
 }
 
 export default Booking;
