@@ -208,10 +208,10 @@ class Booking {
     thisBooking.table.addEventListener('click', function (event) {
       event.preventDefault();
 
-      const clickedElement = event.target;
+      const clickedElement = this;  // this wskazuje na thisBooking.table
 
       // check if the table is free
-      if(clickedElement.classList.contains('booked')) {
+      if(!clickedElement.classList.contains('booked')) {
         thisBooking.table; // tbd
       }
     });
