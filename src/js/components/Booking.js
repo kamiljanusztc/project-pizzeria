@@ -216,7 +216,7 @@ class Booking {
 
       if (!clickedElement.classList.contains(classNames.booking.tableBooked)) {
         //add table number to property
-        thisBooking.choosenTable = clickedElement;
+        thisBooking.tableNumber = clickedElement;
 
         // add class "selected-table"
         clickedElement.classList.add(classNames.booking.tableSelected);
