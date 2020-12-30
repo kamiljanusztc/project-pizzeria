@@ -11,6 +11,8 @@ class Booking {
     thisBooking.render(element);
     thisBooking.initWidgets();
     thisBooking.getData(); // pobiera dane z API uzywajac adresow z parametrami filtrujacymi wyniki
+    thisBooking.initTables();
+    thisBooking.tableNumber = null;
 
   }
 
@@ -93,7 +95,7 @@ class Booking {
     const maxDate = thisBooking.datePicker.maxDate;
 
     for (let item of eventsRepeat) {
-      if (item.repeat == 'daily') { // warunek, ktory sprawdzi czy to wyrazenie ma walsciwosc repeat o wartosci daily
+      if (item.repeat == 'daily') { // warunek, ktory sprawdzi czy to wyrazenie ma wlasciwosc repeat o wartosci daily
         for (let loopDate = minDate; loopDate <= maxDate; loopDate = utils.addDays(loopDate, 1)) { // interuje po datach, a po kazdej iteracji zmieniamy date o jeden dzien
           thisBooking.makeBooked(utils.dateToStr(loopDate), item.hour, item.duration, item.table);
         }
@@ -174,7 +176,7 @@ class Booking {
     // change wrapper content to generated HTML
     thisBooking.dom.wrapper.innerHTML = generatedHTML;
 
-    thisBooking.dom.peopleAmount = document.querySelector(select.booking.peopleAmount); // tbd
+    thisBooking.dom.peopleAmount = document.querySelector(select.booking.peopleAmount);
     thisBooking.dom.hoursAmount = document.querySelector(select.booking.hoursAmount);
 
     thisBooking.dom.datePicker = document.querySelector(select.widgets.datePicker.wrapper);
@@ -196,27 +198,37 @@ class Booking {
       thisBooking.upadteDOM();
     });
 
-    thisBooking.dom.hoursAmount.addEventListener('click', function () {
+    // thisBooking.dom.hoursAmount.addEventListener('click', function () {
 
-    });
+    // });
+
   }
 
-  initActions() {
+  initTables() {
     const thisBooking = this;
 
     // add listener to clicked table
-    thisBooking.table.addEventListener('click', function (event) {
-      event.preventDefault();
+    thisBooking.table.addEventListener('click', function () {
 
-      const clickedElement = this;  // this wskazuje na thisBooking.table
+      const clickedElement = this;  // this wskazuje na thisBooking.dom.tables
 
-      // check if the table is free
-      if(!clickedElement.classList.contains('booked')) {
-        thisBooking.table; // tbd
+      thisBooking.tableNumber = clickedElement.getAttribute(settings.booking.tableIdAttribute);
+
+      if (!clickedElement.classList.contains(classNames.booking.tableBooked)) {
+        //add table number to property
+        thisBooking.choosenTable = clickedElement;
+
+        // add class "selected-table"
+        clickedElement.classList.add(classNames.booking.tableSelected);
+
+      } else if (clickedElement.classList.contains(classNames.booking.tableBooked)) {
+        alert('This table is booked!');
+
+      } else if (clickedElement.classList.contains(classNames.booking.tableSelected)) {
+        clickedElement.classList.remove(classNames.booking.tableSelected);
       }
     });
   }
-
 }
 
 export default Booking;
