@@ -176,7 +176,7 @@
 
     &.selected-table {
       cursor: not-allowed;
-      color: #fff;
+      color: $color-dark;
 
       &::after {
         position: absolute;

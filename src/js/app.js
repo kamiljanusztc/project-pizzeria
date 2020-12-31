@@ -73,7 +73,7 @@ const app = {
         return rawResponse.json();
       })
       .then(function(parsedResponse) {
-        console.log('parsedResponse', parsedResponse); //po otrzymaniu odpowiedzi wyswietla ja w konsoli
+        //console.log('parsedResponse', parsedResponse); //po otrzymaniu odpowiedzi wyswietla ja w konsoli
 
         /* save parsedResponse as thisApp.data.products */
         thisApp.data.products = parsedResponse;
