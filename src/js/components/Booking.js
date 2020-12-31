@@ -12,8 +12,7 @@ class Booking {
     thisBooking.initWidgets();
     thisBooking.getData(); // pobiera dane z API uzywajac adresow z parametrami filtrujacymi wyniki
     thisBooking.initTables();
-    thisBooking.tableNumber = null;
-
+    //thisBooking.tableNumber = null;
   }
 
   getData() {
@@ -207,27 +206,49 @@ class Booking {
   initTables() {
     const thisBooking = this;
 
+    for (let table of thisBooking.dom.tables) {
+
+      table.addEventListener('click', function () {
+
+        if (!table.classList.contains(classNames.booking.table)) {
+          thisBooking.tableNumber = table.getAttribute(settings.booking.tableIdAttribute);
+
+          table.classList.add(classNames.booking.tableSelected);
+
+        } else if (table.classList.contains(classNames.booking.tableBooked)) {
+          alert('This table is booked!');
+
+        } else if (table.classList.contains(classNames.booking.tableSelected)) {
+          table.classList.remove(classNames.booking.tableSelected);
+        }
+      });
+
+    }
+
     // add listener to clicked table
-    thisBooking.table.addEventListener('click', function () {
+    // thisBooking.dom.tables.addEventListener('click', function () {
+    //   console.log('listener');
 
-      const clickedElement = this;  // this wskazuje na thisBooking.dom.tables
+    //   //const clickedElement = this;  // this wskazuje na thisBooking.dom.tables
 
-      thisBooking.tableNumber = clickedElement.getAttribute(settings.booking.tableIdAttribute);
+    //   for(let table of thisBooking.dom.tables) {
+    //     console.log('table', table);
 
-      if (!clickedElement.classList.contains(classNames.booking.tableBooked)) {
-        //add table number to property
-        thisBooking.tableNumber = clickedElement;
+    //     if (!table.classList.contains(classNames.booking.tableBooked)) {
 
-        // add class "selected-table"
-        clickedElement.classList.add(classNames.booking.tableSelected);
+    //       thisBooking.tableNumber = table.getAttribute(settings.booking.tableIdAttribute);
 
-      } else if (clickedElement.classList.contains(classNames.booking.tableBooked)) {
-        alert('This table is booked!');
+    //       // add class "selected-table"
+    //       table.classList.add(classNames.booking.tableSelected);
 
-      } else if (clickedElement.classList.contains(classNames.booking.tableSelected)) {
-        clickedElement.classList.remove(classNames.booking.tableSelected);
-      }
-    });
+    //     } else if (table.classList.contains(classNames.booking.tableBooked)) {
+    //       alert('This table is booked!');
+
+    //     } else if (table.classList.contains(classNames.booking.tableSelected)) {
+    //       table.classList.remove(classNames.booking.tableSelected);
+    //     }
+    //   }
+    // });
   }
 }
 
