@@ -182,6 +182,9 @@ class Booking {
     thisBooking.dom.HourPicker = document.querySelector(select.widgets.hourPicker.wrapper);
 
     thisBooking.dom.tables = thisBooking.dom.wrapper.querySelectorAll(select.booking.tables);
+    thisBooking.dom.phone = thisBooking.dom.wrapper.querySelector(select.cart.phone);
+    thisBooking.dom.address = thisBooking.dom.wrapper.querySelector(select.cart.address);
+
   }
 
   initWidgets() {
@@ -195,12 +198,23 @@ class Booking {
 
     thisBooking.dom.wrapper.addEventListener('updated', function () {
       thisBooking.upadteDOM();
+      thisBooking.removeTables();
     });
 
     // thisBooking.dom.hoursAmount.addEventListener('click', function () {
 
     // });
 
+  }
+
+  removeTables () {
+    const thisBooking = this;
+
+    for (let table of thisBooking.dom.tables) {
+      if (table.classList.contains(classNames.booking.tableSelected)) {
+        table.classList.remove(classNames.booking.tableSelected);
+      }
+    }
   }
 
   initTables() {
@@ -217,6 +231,7 @@ class Booking {
           console.log('table removed');
 
         } else if (!table.classList.contains(classNames.booking.tableBooked) && !table.classList.contains(classNames.booking.tableBooked)) {
+          thisBooking.removeTables();
           table.classList.add(classNames.booking.tableSelected);
           thisBooking.tableId = thisBooking.tableNumber;
           console.log('table added');
@@ -228,6 +243,27 @@ class Booking {
 
     }
   }
+
+  // sendBooking () {
+  //   const thisBooking = this;
+
+  //   const url = settings.db.url + '/' + settings.db.booking;
+
+  //   const payload = {
+  //     date: thisBooking.date,
+  //     //hour: godzina wybrana w hourPickerze (w formacie HH:ss)
+  //     table: '',
+  //     duration: thisBooking.hoursAmount,
+  //     ppl: thisBooking.peopleAmount.value,
+  //     starters: [],
+  //     phone: thisBooking.dom.phone.value,
+  //     address: thisBooking.dom.address.value,
+  //   };
+  //   console.log('playload:', payload);
+
+  //   for (let )
+
+  // }
 }
 
 export default Booking;
