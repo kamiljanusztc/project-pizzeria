@@ -214,10 +214,12 @@ class Booking {
 
         if (!table.classList.contains(classNames.booking.tableBooked) && table.classList.contains(classNames.booking.tableSelected)) {
           table.classList.remove(classNames.booking.tableSelected);
+          console.log('table removed');
 
         } else if (!table.classList.contains(classNames.booking.tableBooked) && !table.classList.contains(classNames.booking.tableBooked)) {
           table.classList.add(classNames.booking.tableSelected);
           thisBooking.tableId = thisBooking.tableNumber;
+          console.log('table added');
 
         } else if (table.classList.contains(classNames.booking.tableBooked)) {
           alert('This table is booked!');
@@ -225,28 +227,6 @@ class Booking {
       });
 
     }
-
-    // for (let table of thisBooking.dom.tables) {
-
-    //   table.addEventListener('click', function () {
-    //     // table.classList.toggle(classNames.booking.tableSelected);
-    //     thisBooking.tableId = table.getAttribute(settings.booking.tableIdAttribute);
-
-    //     if (!table.classList.contains(classNames.booking.tableBooked) && !table.classList.contains(classNames.booking.tableBooked)) {
-    //       table.classList.add(classNames.booking.tableSelected);
-    //       thisBooking.tableId = thisBooking.tableNumber;
-
-    //     } else if (!table.classList.contains(classNames.booking.tableBooked) && table.classList.contains(classNames.booking.tableSelected)) {
-    //       table.classList.remove(classNames.booking.tableSelected);
-    //       thisBooking.tableNumber = null;
-
-    //     } else if (table.classList.contains(classNames.booking.tableBooked)) {
-    //       alert('This table is booked!');
-    //     }
-    //   });
-
-    // }
-
   }
 }
 
