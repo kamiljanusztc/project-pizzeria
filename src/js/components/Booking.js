@@ -182,9 +182,10 @@ class Booking {
     thisBooking.dom.HourPicker = document.querySelector(select.widgets.hourPicker.wrapper);
 
     thisBooking.dom.tables = thisBooking.dom.wrapper.querySelectorAll(select.booking.tables);
-    thisBooking.dom.phone = thisBooking.dom.wrapper.querySelector(select.cart.phone);
-    thisBooking.dom.address = thisBooking.dom.wrapper.querySelector(select.cart.address);
-
+    thisBooking.dom.phone = thisBooking.dom.wrapper.querySelector(select.booking.phone);
+    thisBooking.dom.address = thisBooking.dom.wrapper.querySelector(select.booking.address);
+    thisBooking.dom.starters = thisBooking.dom.wrapper.querySelectorAll(select.booking.starter);
+    thisBooking.dom.buttonBookTable = thisBooking.dom.wrapper.querySelector(select.booking.button);
   }
 
   initWidgets() {
@@ -199,6 +200,10 @@ class Booking {
     thisBooking.dom.wrapper.addEventListener('updated', function () {
       thisBooking.upadteDOM();
       thisBooking.removeTables();
+    });
+
+    thisBooking.dom.buttonBookTable.addEventListener('click', function () {
+      thisBooking.sendBooking();
     });
 
     // thisBooking.dom.hoursAmount.addEventListener('click', function () {
@@ -244,26 +249,46 @@ class Booking {
     }
   }
 
-  // sendBooking () {
-  //   const thisBooking = this;
+  sendBooking () { // send info about reservation to server
+    const thisBooking = this;
 
-  //   const url = settings.db.url + '/' + settings.db.booking;
+    const url = settings.db.url + '/' + settings.db.booking; // endpoint address
 
-  //   const payload = {
-  //     date: thisBooking.date,
-  //     //hour: godzina wybrana w hourPickerze (w formacie HH:ss)
-  //     table: '',
-  //     duration: thisBooking.hoursAmount,
-  //     ppl: thisBooking.peopleAmount.value,
-  //     starters: [],
-  //     phone: thisBooking.dom.phone.value,
-  //     address: thisBooking.dom.address.value,
-  //   };
-  //   console.log('playload:', payload);
+    const payload = {
+      date: thisBooking.date,
+      hour: thisBooking.hourPicker.value,
+      table: '',
+      duration: thisBooking.hoursAmount,
+      ppl: thisBooking.peopleAmount.value,
+      starters: [],
+      phone: thisBooking.dom.phone.value,
+      address: thisBooking.dom.address.value,
+    };
+    console.log('playload:', payload);
 
-  //   for (let )
+    for (let starter of thisBooking.dom.starters) {
 
-  // }
+      if (starter.checked == true) {
+        payload.starters.push(starter.value);
+        console.log('starter', starter);
+
+      } else {
+        payload.starters = [];
+      }
+    }
+
+    const options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(payload),
+    };
+
+    fetch(url, options)
+      .then(thisBooking.makeBooked(payload.date, payload.hour, payload.duration, payload.table));
+    console.log('new reservation');
+  }
 }
 
 export default Booking;

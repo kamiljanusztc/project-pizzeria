@@ -147,7 +147,7 @@ class Cart { // zajmuje sie calym koszykie, jego funkcjonalnosciami
     console.log('playload:', payload);
 
     for(let prod of thisCart.products) {
-      payload.products.push(prod.getData()); //dodajemy obiekty podsymowania
+      payload.products.push(prod.getData()); //dodajemy obiekty podsumowania
     }
 
     const options = {
