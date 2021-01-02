@@ -197,12 +197,28 @@ class Booking {
     thisBooking.datePicker = new DatePicker(thisBooking.dom.datePicker);
     thisBooking.hourPicker = new HourPicker(thisBooking.dom.HourPicker);
 
-    thisBooking.dom.wrapper.addEventListener('updated', function () {
+    // thisBooking.dom.wrapper.addEventListener('updated', function (event) {
+    //   event.preventDefault();
+    //   thisBooking.upadteDOM();
+    //   thisBooking.removeTables();
+    // });
+
+    thisBooking.dom.datePicker.addEventListener('updated', function (event) {
+      event.preventDefault();
       thisBooking.upadteDOM();
       thisBooking.removeTables();
+      console.log('update');
     });
 
-    thisBooking.dom.buttonBookTable.addEventListener('click', function () {
+    thisBooking.dom.HourPicker.addEventListener('updated', function (event) {
+      event.preventDefault();
+      thisBooking.upadteDOM();
+      thisBooking.removeTables();
+      console.log('update');
+    });
+
+    thisBooking.dom.buttonBookTable.addEventListener('submit', function (event) {
+      event.preventDefault();
       thisBooking.sendBooking();
     });
 
@@ -227,8 +243,9 @@ class Booking {
 
     for (let table of thisBooking.dom.tables) {
 
-      table.addEventListener('click', function () {
+      table.addEventListener('click', function (event) {
         // table.classList.toggle(classNames.booking.tableSelected);
+        event.preventDefault();
         thisBooking.tableId = table.getAttribute(settings.booking.tableIdAttribute);
 
         if (!table.classList.contains(classNames.booking.tableBooked) && table.classList.contains(classNames.booking.tableSelected)) {
