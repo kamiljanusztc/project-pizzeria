@@ -276,7 +276,7 @@ class Booking {
       date: thisBooking.date,
       hour: thisBooking.hourPicker.value,
       table: thisBooking.chosenTable,
-      duration: thisBooking.hoursAmount,
+      duration: thisBooking.hoursAmount.value,
       ppl: thisBooking.peopleAmount.value,
       starters: [],
       phone: thisBooking.dom.phone.value,
@@ -304,8 +304,14 @@ class Booking {
     };
 
     fetch(url, options)
-      .then(thisBooking.makeBooked(payload.date, payload.hour, payload.duration, payload.table));
-    console.log('new reservation');
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function(parsedResponse) {
+        console.log('parsedResponse', parsedResponse);
+        thisBooking.makeBooked(payload.date, payload.hour, payload.duration, payload.table);
+        thisBooking.upadteDOM();
+      });
   }
 }
 
