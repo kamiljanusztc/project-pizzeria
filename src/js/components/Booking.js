@@ -228,7 +228,7 @@ class Booking {
 
   }
 
-  removeTables () {
+  removeTables() {
     const thisBooking = this;
 
     for (let table of thisBooking.dom.tables) {
@@ -247,6 +247,7 @@ class Booking {
         // table.classList.toggle(classNames.booking.tableSelected);
         event.preventDefault();
         thisBooking.tableId = table.getAttribute(settings.booking.tableIdAttribute);
+        thisBooking.chosenTable = parseInt(thisBooking.tableId);
 
         if (!table.classList.contains(classNames.booking.tableBooked) && table.classList.contains(classNames.booking.tableSelected)) {
           table.classList.remove(classNames.booking.tableSelected);
@@ -266,7 +267,7 @@ class Booking {
     }
   }
 
-  sendBooking () { // send info about reservation to server
+  sendBooking() { // send info about reservation to server
     const thisBooking = this;
 
     const url = settings.db.url + '/' + settings.db.booking; // endpoint address
@@ -274,7 +275,7 @@ class Booking {
     const payload = {
       date: thisBooking.date,
       hour: thisBooking.hourPicker.value,
-      table: '',
+      table: thisBooking.chosenTable,
       duration: thisBooking.hoursAmount,
       ppl: thisBooking.peopleAmount.value,
       starters: [],
