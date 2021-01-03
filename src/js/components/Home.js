@@ -1,3 +1,4 @@
+import { select, templates } from '../settings';
 
 class Home {
   constructor(element) {
@@ -7,14 +8,22 @@ class Home {
     thisHome.initWidgets();
   }
 
-  render() {
+  render(element) {
     const thisHome = this;
 
-    coonst generatedHTML = templates.
+    const generatedHTML = templates.homeWidget();
+
+    thisHome.dom = {};
+
+    thisHome.dom.wrapper = element;
+
+    thisHome.dom.wrapper.innerHTML = generatedHTML;
+
+    thisHome.dom.carousel = thisHome.dom.wrapper.querySelector(select.carousel.wrapper);
   }
 
   initWidgets() {
-    const thisHome = this;
+    //const thisHome = this;
   }
 }
 

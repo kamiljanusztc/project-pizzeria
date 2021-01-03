@@ -110,6 +110,8 @@ const app = {
     thisApp.initCart();
 
     thisApp.initBooking();
+
+    thisApp.initHome();
   },
 
   initCart: function () {
@@ -131,14 +133,14 @@ const app = {
 
     const bookingWidget = document.querySelector(select.containerOf.booking);
     thisApp.booking = new Booking(bookingWidget); // tworzymy nowa instancje
-  }
+  },
 
   initHome: function() {
     const thisApp = this;
 
     const homeWidget = document.querySelector(select.containerOf.home);
     thisApp.home = new Home(homeWidget);
-  }
+  },
 };
 
 app.init();
