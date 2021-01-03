@@ -1,30 +1,30 @@
-import { select } from '../settings';
+// import { select } from '../settings';
 
-class Carousel {
-  constructor(element) {
-    const thisCarousel = this;
+// class Carousel {
+//   constructor(element) {
+//     const thisCarousel = this;
 
-    thisCarousel.render(element);
-    thisCarousel.initPlugin();
-  }
+//     thisCarousel.render(element);
+//     thisCarousel.initPlugin();
+//   }
 
-  render(element) {
-    const thisCarousel = this;
+//   render(element) {
+//     const thisCarousel = this;
 
-    thisCarousel.dom.wrapper = element;
-  }
+//     thisCarousel.dom.wrapper = element;
+//   }
 
-  initPlugin() {
-    const thisCarousel = this;
+//   initPlugin() {
+//     const thisCarousel = this;
 
-    const elem = document.querySelector(select.home.carousel);
-    thisCarousel.flkty = new Flickity( elem, {
-      // options
-      cellAlign: 'left',
-      contain: true,
-      autoPlay: true,
-    });
-  }
-}
+//     const elem = document.querySelector(select.home.carousel);
+//     thisCarousel.flkty = new Flickity( elem, {
+//       // options
+//       cellAlign: 'left',
+//       contain: true,
+//       autoPlay: true,
+//     });
+//   }
+// }
 
-export default Carousel;
+// export default Carousel;

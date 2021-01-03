@@ -2,7 +2,7 @@ import {settings, select, classNames} from './settings.js';
 import Product from './components/Product.js';
 import Cart from './components/Cart.js';
 import Booking from './components/Booking.js';
-import Home from './components/Home.js';
+//import Home from './components/Home.js';
 
 const app = {
   initPages: function() { // uruchamiana w momencie odswiezenia strony
@@ -111,7 +111,7 @@ const app = {
 
     thisApp.initBooking();
 
-    thisApp.initHome();
+    //thisApp.initHome();
   },
 
   initCart: function () {
@@ -135,12 +135,12 @@ const app = {
     thisApp.booking = new Booking(bookingWidget); // tworzymy nowa instancje
   },
 
-  initHome: function() {
-    const thisApp = this;
+  // initHome: function() {
+  //   const thisApp = this;
 
-    const homeWidget = document.querySelector(select.containerOf.home);
-    thisApp.home = new Home(homeWidget);
-  },
+  //   const homeWidget = document.querySelector(select.containerOf.home);
+  //   thisApp.home = new Home(homeWidget);
+  // },
 };
 
 app.init();

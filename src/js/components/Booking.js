@@ -234,6 +234,7 @@ class Booking {
     for (let table of thisBooking.dom.tables) {
       if (table.classList.contains(classNames.booking.tableSelected)) {
         table.classList.remove(classNames.booking.tableSelected);
+        thisBooking.chosenTable = null;
       }
     }
   }
@@ -312,6 +313,7 @@ class Booking {
         thisBooking.makeBooked(payload.date, payload.hour, payload.duration, payload.table);
         thisBooking.upadteDOM();
       });
+    //.then(reload());
   }
 }
 
