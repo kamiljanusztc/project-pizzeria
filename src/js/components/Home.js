@@ -1,41 +1,34 @@
-// import { select, templates } from '../settings';
+import { select, templates } from '../settings';
+import Carousel from './Carousel.js';
 
-// class Home {
-//   constructor(element) {
-//     const thisHome = this;
+class Home {
+  constructor(element) {
+    const thisHome = this;
 
-//     thisHome.render(element);
-//     thisHome.initWidgets();
-//   }
+    thisHome.render(element);
+    thisHome.initWidgets();
+  }
 
-//   render(element) {
-//     const thisHome = this;
+  render(element) {
+    const thisHome = this;
 
-//     const generatedHTML = templates.homePage();
+    const generatedHTML = templates.homePage();
 
-//     thisHome.dom = {};
+    thisHome.dom = {};
 
-//     thisHome.dom.wrapper = element;
+    thisHome.dom.wrapper = element;
 
-//     thisHome.dom.wrapper.innerHTML = generatedHTML;
+    thisHome.dom.wrapper.innerHTML = generatedHTML;
 
-//     thisHome.dom.carousel = thisHome.dom.wrapper.querySelector(select.carousel.wrapper);
-//   }
+    thisHome.dom.carousel = thisHome.dom.wrapper.querySelector(select.home.carousel);
+  }
 
-//   initWidgets() {
-//     //const thisHome = this;
-//   }
+  initWidgets() {
+    const thisHome = this;
 
-//   initPlugin() {
-//     const thisHome = this;
+    thisHome.carousel = new Carousel(thisHome.dom.carousel);
+  }
 
-//     const elem = document.querySelector('.main-carousel');
-//     let flkty = new Flickity( elem, {
-//       // options
-//       cellAlign: 'left',
-//       contain: true
-//     });
-//   }
-// }
+}
 
-// export default Home;
+export default Home;
