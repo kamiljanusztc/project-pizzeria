@@ -1,16 +1,21 @@
 
-// class Home {
-//   constructor(element) {
-//     const thisHome = this;
+class Home {
+  constructor(element) {
+    const thisHome = this;
 
-//     console.log(thisHome);
-//   }
+    thisHome.render(element);
+    thisHome.initWidgets();
+  }
 
-//   render() {
-//     const thisHome = this;
-//   }
+  render() {
+    const thisHome = this;
 
-//   initWidgets() {
-//     const thisHome = this;
-//   }
-// }
+    coonst generatedHTML = templates.
+  }
+
+  initWidgets() {
+    const thisHome = this;
+  }
+}
+
+export default Home;
