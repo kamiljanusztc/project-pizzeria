@@ -7,104 +7,182 @@
   border-radius: $radius;
 }
 
-.main-boxes {
-  .cta-boxes {
-    display: flex;
-    justify-content: space-between;
+.cta-boxes {
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+  margin-bottom: -14px;
+
+  h2 {
+    font-family: $font-header;
+    font-size: 26px;
+    padding-top: 15px;
+    margin-bottom: -10px;
+    transition: all 1s;
+  }
+
+  p {
+    opacity: 0;
+  }
+
+  .order-box {
+    position: relative;
+    background-image: url("../../images/home/pizza-1.jpg");
+    background-color: #cccccc;
+    background-size: cover;
+    color: $color-light;
     text-align: center;
-    margin-bottom: -14px;
+    width: 298px;
+    height: 120px;
 
-    h2 {
-      font-family: $font-header;
-      font-size: 26px;
-      padding-top: 15px;
-      margin-bottom: -10px;
-      transition: all 1s;
-    }
+    &:hover {
+      cursor: pointer;
 
-    p {
-      opacity: 0;
-    }
-
-    .order-box {
-      position: relative;
-      background-image: url("../../images/home/pizza-1.jpg");
-      background-color: #cccccc;
-      background-size: cover;
-      color: $color-light;
-      text-align: center;
-      width: 298px;
-      height: 120px;
-
-      &:hover {
-        cursor: pointer;
-
-        h2 {
-          font-family: $font-header;
-          font-size: 26px;
-          padding-top: 0;
-        }
-
-        p {
-          opacity: 1;
-        }
+      h2 {
+        font-family: $font-header;
+        font-size: 26px;
+        padding-top: 0;
       }
 
+      p {
+        opacity: 1;
+      }
     }
 
-    .book-box {
-      background-image: url("../../images/home/pizza-2.jpg");
-      background-color: #cccccc;
-      background-size: cover;
-      color: $color-light;
-      width: 298px;
-      height: 120px;
+  }
 
-      &:hover {
-        cursor: pointer;
+  .book-box {
+    background-image: url("../../images/home/pizza-2.jpg");
+    background-color: #cccccc;
+    background-size: cover;
+    color: $color-light;
+    width: 298px;
+    height: 120px;
 
-        h2 {
-          font-family: $font-header;
-          font-size: 26px;
-          padding-top: 0;
-        }
+    &:hover {
+      cursor: pointer;
 
-        p {
-          opacity: 1;
-        }
+      h2 {
+        font-family: $font-header;
+        font-size: 26px;
+        padding-top: 0;
+      }
+
+      p {
+        opacity: 1;
       }
     }
   }
+}
 
-  .hour-box {
-    background: $color-main;
-    color: $color-light;
-    text-align: center;
-    height: 120px;
+.hour-box {
+  background: $color-main;
+  color: $color-light;
+  text-align: center;
+  height: 120px;
 
-    h2 {
-      font-family: $font-header;
-      font-size: 26px;
-      padding-top: 20px;
-      margin-bottom: -10px;
-    }
+  h2 {
+    font-family: $font-header;
+    font-size: 26px;
+    padding-top: 20px;
+    margin-bottom: -10px;
   }
 }
 
 .main-carousel {
   padding-top: 50px;
   padding-bottom: 50px;
+
+  .carusel-box {
+    display: flex;
+  }
 }
 
-.carousel-cell {
-  width: 100%; /* full width */
-  height: 160px; /* height of carousel */
-  margin-right: 10px;
-}
+// .carousel-cell {
+//   width: 100%; /* full width */
+//   height: 160px; /* height of carousel */
+//   margin-right: 10px;
+// }
 
-.gallery {
+.gallery-row-container {
   padding-top: 50px;
   padding-bottom: 50px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  //align-items: center;
+
+
+
+  .gallery-box {
+    position: relative;
+    flex-basis: 33,33%;
+    box-sizing: border-box;
+    width: 193px;
+    height: 193px;
+    margin-top: 8px;
+
+    .gallery-overlay {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin-right: -50%;
+      transform: translate(-50%, -50%);
+      opacity: 0;
+      text-align: center;
+      //display: none;
+
+    }
+
+    &:hover {
+      cursor: pointer;
+      opacity: 0.8;
+
+      .gallery-overlay {
+        opacity: 1;
+
+        a {
+          color: $color-light;
+          font-size: 30px;
+          letter-spacing: 15px;
+
+          &:hover {
+            color: $color-main;
+          }
+        }
+      }
+    }
+  }
+
+  .img-1 {
+    background-image: url("../../images/home/pizza-4.jpg");
+    background-size: cover;
+  }
+
+  .img-2 {
+    background-image: url("../../images/home/pizza-5.jpg");
+    background-size: cover;
+  }
+
+  .img-3 {
+    background-image: url("../../images/home/pizza-6.jpg");
+    background-size: cover;
+  }
+
+  .img-4 {
+    background-image: url("../../images/home/pizza-7.jpg");
+    background-size: cover;
+  }
+
+  .img-5 {
+    background-image: url("../../images/home/pizza-8.jpg");
+    background-size: cover;
+  }
+
+  .img-6 {
+    background-image: url("../../images/home/pizza-9.jpg");
+    background-size: cover;
+  }
 }
 
 a {

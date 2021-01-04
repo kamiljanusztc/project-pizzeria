@@ -23,6 +23,7 @@ class Carousel {
       cellAlign: 'left',
       contain: true,
       autoPlay: true,
+      prevNextButtons: false,
     });
   }
 }
