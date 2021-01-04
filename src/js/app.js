@@ -14,7 +14,7 @@ const app = {
 
     const idFromHash = window.location.hash.replace('#/', '');
 
-    let pageMatchingHash = thisApp.pages[0].id; //kiedy adres hash nie pasuje do id zadnej podstrony ot aktywuje sie pierwsza z nich
+    let pageMatchingHash = thisApp.pages[0].id; //kiedy adres hash nie pasuje do id zadnej podstrony to aktywuje sie pierwsza z nich
 
     // find subpage with id
     for(let page of thisApp.pages) {

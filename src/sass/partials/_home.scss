@@ -1,3 +1,5 @@
+/* Home Page */
+
 .home-page {
   background: #fff;
   margin: ($base-size * 3.5) auto;
@@ -6,6 +8,8 @@
   border-bottom: 1px solid lighten($color-dark, 70%);
   border-radius: $radius;
 }
+
+/* Main Boxes */
 
 .cta-boxes {
   display: flex;
@@ -34,6 +38,7 @@
     text-align: center;
     width: 298px;
     height: 120px;
+    border-radius: 5px;
 
     &:hover {
       cursor: pointer;
@@ -58,6 +63,7 @@
     color: $color-light;
     width: 298px;
     height: 120px;
+    border-radius: 5px;
 
     &:hover {
       cursor: pointer;
@@ -80,6 +86,8 @@
   color: $color-light;
   text-align: center;
   height: 120px;
+  border-radius: 5px;
+
 
   h2 {
     font-family: $font-header;
@@ -89,30 +97,30 @@
   }
 }
 
+/* Carousel */
+
 .main-carousel {
+  //position: relative;
   padding-top: 50px;
   padding-bottom: 50px;
 
-  .carusel-box {
-    display: flex;
+  .flickity-viewport {
+    width: 193px;
+    height: 193px;
+
+    border-radius: 5px;
   }
 }
 
-// .carousel-cell {
-//   width: 100%; /* full width */
-//   height: 160px; /* height of carousel */
-//   margin-right: 10px;
-// }
+/* Gallery */
 
 .gallery-row-container {
-  padding-top: 50px;
-  padding-bottom: 50px;
+  padding-top: 80px;
+  padding-bottom: 30px;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
   //align-items: center;
-
-
 
   .gallery-box {
     position: relative;
@@ -121,6 +129,7 @@
     width: 193px;
     height: 193px;
     margin-top: 8px;
+    border-radius: 5px;
 
     .gallery-overlay {
       position: absolute;
@@ -130,13 +139,12 @@
       transform: translate(-50%, -50%);
       opacity: 0;
       text-align: center;
-      //display: none;
-
     }
 
     &:hover {
       cursor: pointer;
       opacity: 0.8;
+      transition: all 1s;
 
       .gallery-overlay {
         opacity: 1;
@@ -147,6 +155,7 @@
           letter-spacing: 15px;
 
           &:hover {
+            transition: all 1s;
             color: $color-main;
           }
         }

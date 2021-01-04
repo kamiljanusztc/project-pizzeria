@@ -197,12 +197,6 @@ class Booking {
     thisBooking.datePicker = new DatePicker(thisBooking.dom.datePicker);
     thisBooking.hourPicker = new HourPicker(thisBooking.dom.HourPicker);
 
-    // thisBooking.dom.wrapper.addEventListener('updated', function (event) {
-    //   event.preventDefault();
-    //   thisBooking.upadteDOM();
-    //   thisBooking.removeTables();
-    // });
-
     thisBooking.dom.datePicker.addEventListener('updated', function (event) {
       event.preventDefault();
       thisBooking.upadteDOM();
