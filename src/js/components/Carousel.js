@@ -1,30 +1,32 @@
-// import { select } from '../settings';
+/*global Flickity*/
 
-// class Carousel {
-//   constructor(element) {
-//     const thisCarousel = this;
+import { select } from '../settings.js';
 
-//     thisCarousel.render(element);
-//     thisCarousel.initPlugin();
-//   }
+class Carousel {
+  constructor(element) {
+    const thisCarousel = this;
 
-//   render(element) {
-//     const thisCarousel = this;
+    thisCarousel.render(element);
+    thisCarousel.initPlugin();
+  }
 
-//     thisCarousel.dom.wrapper = element;
-//   }
+  render(element) {
+    const thisCarousel = this;
 
-//   initPlugin() {
-//     const thisCarousel = this;
+    thisCarousel.dom.wrapper = element;
+  }
 
-//     const elem = document.querySelector(select.home.carousel);
-//     thisCarousel.flkty = new Flickity( elem, {
-//       // options
-//       cellAlign: 'left',
-//       contain: true,
-//       autoPlay: true,
-//     });
-//   }
-// }
+  initPlugin() {
+    const thisCarousel = this;
 
-// export default Carousel;
+    const elem = document.querySelector(select.home.carousel);
+    thisCarousel.flkty = new Flickity( elem, {
+      // options
+      cellAlign: 'left',
+      contain: true,
+      autoPlay: true,
+    });
+  }
+}
+
+export default Carousel;
