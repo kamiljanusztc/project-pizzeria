@@ -75,6 +75,7 @@ export const select = {
     address: '[name="address"]',
     starter: '[name="starter"]',
     button: '.booking-form',//'.booking-form [type="submit"]',
+    clickedButton: '.booking-form [type="submit"]',
   },
   nav: {
     links: '.main-nav a',

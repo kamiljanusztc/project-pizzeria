@@ -312,8 +312,8 @@ class Booking {
         console.log('parsedResponse', parsedResponse);
         thisBooking.makeBooked(payload.date, payload.hour, payload.duration, payload.table);
         thisBooking.upadteDOM();
-      })
-      .then(location.reload());
+      });
+    thisBooking.removeTables();
   }
 }
 

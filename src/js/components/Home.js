@@ -20,9 +20,9 @@ class Home {
 
     thisHome.dom.wrapper.innerHTML = generatedHTML;
 
-    thisHome.dom.orderBox = thisHome.dom.wrapper.querySelector(select.homoe.orderBox);
-    thisHome.dom.bookBox = thisHome.dom.wrapper.querySelector(select.home.bookBox);
-    thisHome.dom.carousel = thisHome.dom.wrapper.querySelector(select.home.carousel);
+    //thisHome.dom.orderBox = thisHome.dom.wrapper.querySelector(select.homoe.orderBox);
+    //thisHome.dom.bookBox = thisHome.dom.wrapper.querySelector(select.home.bookBox);
+    thisHome.dom.carousel = thisHome.dom.wrapper.querySelector(select.widgets.home.carousel);
   }
 
   initWidgets() {

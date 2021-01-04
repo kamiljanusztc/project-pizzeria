@@ -13,6 +13,7 @@
     display: flex;
     justify-content: space-between;
     text-align: center;
+    margin-bottom: -14px;
 
     h2 {
       font-family: $font-header;
@@ -33,7 +34,7 @@
       background-size: cover;
       color: $color-light;
       text-align: center;
-      width: 300px;
+      width: 298px;
       height: 120px;
 
       &:hover {
@@ -57,7 +58,7 @@
       background-color: #cccccc;
       background-size: cover;
       color: $color-light;
-      width: 300px;
+      width: 298px;
       height: 120px;
 
       &:hover {
@@ -82,19 +83,13 @@
     text-align: center;
     height: 120px;
 
-    padding: 0;
-
     h2 {
       font-family: $font-header;
       font-size: 26px;
-      padding-top: 15px;
-    }
-
-    p {
-      padding-top: 0;
+      padding-top: 20px;
+      margin-bottom: -10px;
     }
   }
-
 }
 
 .main-carousel {
@@ -111,4 +106,9 @@
 .gallery {
   padding-top: 50px;
   padding-bottom: 50px;
+}
+
+a {
+  color: $color-main;
+  cursor: pointer;
 }
