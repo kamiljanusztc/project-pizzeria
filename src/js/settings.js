@@ -43,6 +43,8 @@ export const select = {
       output: '.output',
     },
     home: {
+      orderBox: '.order-box',
+      bookBox: '.book-box',
       carousel: '.main-carousel',
     }
   },

@@ -1,0 +1,114 @@
+.home-page {
+  background: #fff;
+  margin: ($base-size * 3.5) auto;
+  padding: ($base-size * 6) ($base-size * 4);
+  background: $color-light;
+  border-bottom: 1px solid lighten($color-dark, 70%);
+  border-radius: $radius;
+}
+
+.main-boxes {
+
+  .cta-boxes {
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+
+    h2 {
+      font-family: $font-header;
+      font-size: 26px;
+      padding-top: 15px;
+      margin-bottom: -10px;
+      transition: all 1s;
+    }
+
+    p {
+      opacity: 0;
+    }
+
+    .order-box {
+      position: relative;
+      background-image: url("../../images/home/pizza-1.jpg");
+      background-color: #cccccc;
+      background-size: cover;
+      color: $color-light;
+      text-align: center;
+      width: 300px;
+      height: 120px;
+
+      &:hover {
+        cursor: pointer;
+
+        h2 {
+          font-family: $font-header;
+          font-size: 26px;
+          padding-top: 0;
+        }
+
+        p {
+          opacity: 1;
+        }
+      }
+
+    }
+
+    .book-box {
+      background-image: url("../../images/home/pizza-2.jpg");
+      background-color: #cccccc;
+      background-size: cover;
+      color: $color-light;
+      width: 300px;
+      height: 120px;
+
+      &:hover {
+        cursor: pointer;
+
+        h2 {
+          font-family: $font-header;
+          font-size: 26px;
+          padding-top: 0;
+        }
+
+        p {
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+  .hour-box {
+    background: $color-main;
+    color: $color-light;
+    text-align: center;
+    height: 120px;
+
+    padding: 0;
+
+    h2 {
+      font-family: $font-header;
+      font-size: 26px;
+      padding-top: 15px;
+    }
+
+    p {
+      padding-top: 0;
+    }
+  }
+
+}
+
+.main-carousel {
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.carousel-cell {
+  width: 100%; /* full width */
+  height: 160px; /* height of carousel */
+  margin-right: 10px;
+}
+
+.gallery {
+  padding-top: 50px;
+  padding-bottom: 50px;
+}

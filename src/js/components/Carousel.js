@@ -1,7 +1,5 @@
 /*global Flickity*/
 
-import { select } from '../settings.js';
-
 class Carousel {
   constructor(element) {
     const thisCarousel = this;
@@ -13,14 +11,14 @@ class Carousel {
   render(element) {
     const thisCarousel = this;
 
-    thisCarousel.dom.wrapper = element;
+    thisCarousel.wrapper = element;
   }
 
   initPlugin() {
     const thisCarousel = this;
 
-    const elem = document.querySelector(select.home.carousel);
-    thisCarousel.flkty = new Flickity( elem, {
+    //const elem = thisCarousel.wrapper.querySelector(select.home.carousel);
+    thisCarousel.flkty = new Flickity( thisCarousel.wrapper, {
       // options
       cellAlign: 'left',
       contain: true,
