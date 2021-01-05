@@ -13,9 +13,6 @@ export const select = {
     pages: '#pages',
     booking: '.booking-wrapper',
     home: '.home-page',
-    book: '#booking',
-    order: '#order',
-    homePage: '#home',
   },
   all: {
     menuProducts: '#product-list > .product',
@@ -82,6 +79,9 @@ export const select = {
   },
   nav: {
     links: '.main-nav a',
+    home: '[href="#home"]',
+    order: '[href="#order"]',
+    booking: '[href="#booking"]',
   },
   // CODE ADDED END
 };

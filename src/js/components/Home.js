@@ -24,14 +24,9 @@ class Home {
     thisHome.dom.orderBox = thisHome.dom.wrapper.querySelector(select.widgets.home.orderBox);
     thisHome.dom.bookBox = thisHome.dom.wrapper.querySelector(select.widgets.home.bookBox);
 
-    thisHome.order = document.querySelector(select.containerOf.order);
-    thisHome.book = document.querySelector(select.containerOf.book);
-    thisHome.homePage = document.querySelector(select.containerOf.homePage);
+    thisHome.pages = document.querySelector(select.containerOf.pages).children;
     thisHome.navLinks = document.querySelectorAll(select.nav.links);
 
-    thisHome.homeLink = document.querySelector(select.containerOf.homePage);
-    thisHome.orderLink = document.querySelector(select.containerOf.order);
-    thisHome.bookingLink = document.querySelector(select.containerOf.book);
   }
 
   initWidgets() {
@@ -43,25 +38,24 @@ class Home {
       console.log('order online clicked');
       event.preventDefault();
 
-      thisHome.homePage.classList.remove(classNames.pages.active);
-      // thisHome.homeLink.classList.remove(classNames.nav.active);
-      thisHome.order.classList.add(classNames.pages.active);
-
-
+      thisHome.pages[0].classList.remove(classNames.pages.active);
+      thisHome.navLinks[0].classList.remove(classNames.nav.active);
+      thisHome.pages[1].classList.add(classNames.pages.active);
+      thisHome.navLinks[1].classList.add(classNames.nav.active);
+      window.location.assign('http://localhost:3000/#/order');
     });
 
     thisHome.dom.bookBox.addEventListener('click', function(event) {
       console.log('order online clicked');
       event.preventDefault();
 
-      thisHome.homePage.classList.remove(classNames.pages.active);
-
-      thisHome.book.classList.add(classNames.pages.active);
-
+      thisHome.pages[0].classList.remove(classNames.pages.active);
+      thisHome.navLinks[0].classList.remove(classNames.nav.active);
+      thisHome.pages[2].classList.add(classNames.pages.active);
+      thisHome.navLinks[2].classList.add(classNames.nav.active);
+      window.location.assign('http://localhost:3000/#/booking');
     });
-
   }
-
 }
 
 export default Home;
