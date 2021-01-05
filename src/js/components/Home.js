@@ -34,7 +34,7 @@ class Home {
 
     thisHome.carousel = new Carousel(thisHome.dom.carousel);
 
-    thisHome.dom.orderBox.addEventListener('click', function(event) {
+    thisHome.dom.orderBox.addEventListener('click', function (event) {
       console.log('order online clicked');
       event.preventDefault();
 
@@ -45,7 +45,7 @@ class Home {
       window.location.assign('http://localhost:3000/#/order');
     });
 
-    thisHome.dom.bookBox.addEventListener('click', function(event) {
+    thisHome.dom.bookBox.addEventListener('click', function (event) {
       console.log('order online clicked');
       event.preventDefault();
 
