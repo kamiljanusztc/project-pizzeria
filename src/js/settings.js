@@ -79,9 +79,6 @@ export const select = {
   },
   nav: {
     links: '.main-nav a',
-    home: '[href="#home"]',
-    order: '[href="#order"]',
-    booking: '[href="#booking"]',
   },
   // CODE ADDED END
 };

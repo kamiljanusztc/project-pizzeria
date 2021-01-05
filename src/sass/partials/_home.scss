@@ -17,16 +17,21 @@
   text-align: center;
   margin-bottom: -14px;
 
-  h2 {
-    font-family: $font-header;
-    font-size: 26px;
-    padding-top: 15px;
-    margin-bottom: -10px;
-    transition: all 1s;
-  }
+  a {
+    text-decoration: none;
+    color: $color-light;
 
-  p {
-    opacity: 0;
+    h2 {
+      font-family: $font-header;
+      font-size: 26px;
+      padding-top: 15px;
+      margin-bottom: -10px;
+      transition: all 1s;
+    }
+
+    p {
+      opacity: 0;
+    }
   }
 
   .order-box {
@@ -87,7 +92,6 @@
   text-align: center;
   height: 120px;
   border-radius: 5px;
-
 
   h2 {
     font-family: $font-header;
