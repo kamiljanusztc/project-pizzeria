@@ -100,44 +100,42 @@
 /* Carousel */
 
 .main-carousel {
-  padding-top: 50px;
-  padding-bottom: 50px;
+  padding-top: 100px;
+  padding-bottom: 20px;
 
   .carousel-cell {
     display: flex;
 
     .carousel-box {
       position: relative;
-
-
-      .carousel-text {
-        text-align: left;
-        padding: 10px 20px 0 233px;
-
-        h3 {
-          text-transform: uppercase;
-          font-size: 14px;
-        }
-
-        h4 {
-          font-style: italic;
-        }
-      }
-
-      .carousel-image {
-        position: absolute;
-
-        img {
-          width: 193px;
-          height: 193px;
-          object-fit: cover;
-        }
-      }
+      width: 650px;
+      padding-right: 50px;
     }
   }
 
+  .carousel-image {
+    position: absolute;
 
+    img {
+      width: 193px;
+      height: 193px;
+      object-fit: cover;
+    }
+  }
 
+  .carousel-text {
+    text-align: left;
+    padding: 10px 20px 0 233px;
+
+    h3 {
+      text-transform: uppercase;
+      font-size: 14px;
+    }
+
+    h4 {
+      font-style: italic;
+    }
+  }
 }
 
 /* Gallery */
