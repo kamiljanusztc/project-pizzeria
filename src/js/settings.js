@@ -129,7 +129,7 @@ export const settings = {
   },
   // CODE ADDED END
   db: {  // konfiguracja parametrow do laczenia sie z API
-    url: '//localhost:3131',
+    url: '//' + window.location.hostname + (window.location.hostname=='localhost' ? ':3131' : ''),
     product: 'product',
     order: 'order',
     booking: 'booking',
