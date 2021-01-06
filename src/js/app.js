@@ -1,11 +1,11 @@
-import {settings, select, classNames} from './settings.js';
+import { settings, select, classNames } from './settings.js';
 import Product from './components/Product.js';
 import Cart from './components/Cart.js';
 import Booking from './components/Booking.js';
 import Home from './components/Home.js';
 
 const app = {
-  initPages: function() { // uruchamiana w momencie odswiezenia strony
+  initPages: function () { // uruchamiana w momencie odswiezenia strony
     const thisApp = this;
 
     // wszystkie dzieci kontenera stron - id other i booking z index html
@@ -17,8 +17,8 @@ const app = {
     let pageMatchingHash = thisApp.pages[0].id; //kiedy adres hash nie pasuje do id zadnej podstrony to aktywuje sie pierwsza z nich
 
     // find subpage with id
-    for(let page of thisApp.pages) {
-      if(page.id == idFromHash) {
+    for (let page of thisApp.pages) {
+      if (page.id == idFromHash) {
         pageMatchingHash = page.id;
         break; // nie zostana wykonane kolejne iteracje petli
       }
@@ -26,8 +26,8 @@ const app = {
 
     thisApp.activatePage(pageMatchingHash);
 
-    for(let link of thisApp.navLinks) {
-      link.addEventListener('click', function(event) {
+    for (let link of thisApp.navLinks) {
+      link.addEventListener('click', function (event) {
         console.log('navLink clicked');
         const clickedElement = this;
         event.preventDefault();
@@ -43,11 +43,11 @@ const app = {
     }
   },
 
-  activatePage: function(pageId) { //aktywowanie podstrony
+  activatePage: function (pageId) { //aktywowanie podstrony
     const thisApp = this;
 
     /* add class "active" to matching pages, remove from non-matching */
-    for(let page of thisApp.pages) {
+    for (let page of thisApp.pages) {
       // if(page.id == pageId) {
       //   page.classList.add(classNames.pages.active);
       // } else {
@@ -56,7 +56,7 @@ const app = {
       page.classList.toggle(classNames.pages.active, page.id == pageId); //ostatni argument koontroluje czy klasa zostanie nadana czy nie
     }
     /* add class "active" to matching links, remove from non-matching */
-    for(let link of thisApp.navLinks) { // for all links in nave links
+    for (let link of thisApp.navLinks) { // for all links in nave links
       link.classList.toggle( //we want add or remove
         classNames.nav.active, // class in className.nav.active
         link.getAttribute('href') == '#' + pageId //if link href of this link = '#' and pageId
@@ -64,16 +64,16 @@ const app = {
     }
   },
 
-  initData: function() {
+  initData: function () {
     const thisApp = this;
     thisApp.data = {};
     const url = settings.db.url + '/' + settings.db.product;
 
     fetch(url) // wysylamy  zapytanie na podany adres endopointu
-      .then(function(rawResponse) { // funkcja uruchomi sie wtedy gdy request sie zakonczy, a serwer zwroci odpowiedz / konwertuje dane do obiektu js
+      .then(function (rawResponse) { // funkcja uruchomi sie wtedy gdy request sie zakonczy, a serwer zwroci odpowiedz / konwertuje dane do obiektu js
         return rawResponse.json();
       })
-      .then(function(parsedResponse) {
+      .then(function (parsedResponse) {
         //console.log('parsedResponse', parsedResponse); //po otrzymaniu odpowiedzi wyswietla ja w konsoli
 
         /* save parsedResponse as thisApp.data.products */
@@ -86,24 +86,22 @@ const app = {
     console.log('thisApp.data', JSON.stringify(thisApp.data));
   },
 
-  initMenu: function() {
+  initMenu: function () {
     const thisApp = this;
     //console.log('thisApp.data:', thisApp.data);
 
-    for(let productData in thisApp.data.products) {
+    for (let productData in thisApp.data.products) {
       new Product(thisApp.data.products[productData].id, thisApp.data.products[productData]);
     }
   },
 
-  init: function(){
+  init: function () {
     const thisApp = this;
     /* console.log('*** App starting ***');
     console.log('thisApp:', thisApp);
     console.log('classNames:', classNames);
     console.log('settings:', settings);
     console.log('templates:', templates); */
-
-    thisApp.initHome();
 
     thisApp.initPages();
 
@@ -112,6 +110,8 @@ const app = {
     thisApp.initCart();
 
     thisApp.initBooking();
+
+    thisApp.initHome();
 
   },
 
@@ -124,23 +124,25 @@ const app = {
     // dla naszej aplikacj tworzymy wlasciwosc productList, ktora bedzie el DOM
     thisApp.productList = document.querySelector(select.containerOf.menu); // nasluchiwanie na event z product.addToCart
 
-    thisApp.productList.addEventListener('add-to-cart', function(event) { // (event, handler)
+    thisApp.productList.addEventListener('add-to-cart', function (event) { // (event, handler)
       app.cart.add(event.detail.product);
     });
   },
 
-  initBooking: function() {
+  initBooking: function () {
     const thisApp = this;
 
     const bookingWidget = document.querySelector(select.containerOf.booking);
     thisApp.booking = new Booking(bookingWidget); // tworzymy nowa instancje
   },
 
-  initHome: function() {
+  initHome: function () {
     const thisApp = this;
 
     const homeWidget = document.querySelector(select.containerOf.home);
     thisApp.home = new Home(homeWidget);
+
+    thisApp.initPages();
   },
 };
 
