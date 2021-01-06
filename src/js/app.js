@@ -103,6 +103,8 @@ const app = {
     console.log('settings:', settings);
     console.log('templates:', templates); */
 
+    thisApp.initHome();
+
     thisApp.initPages();
 
     thisApp.initData();
@@ -111,7 +113,6 @@ const app = {
 
     thisApp.initBooking();
 
-    thisApp.initHome();
   },
 
   initCart: function () {
