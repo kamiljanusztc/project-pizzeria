@@ -78,7 +78,8 @@ export const select = {
     clickedButton: '.booking-form [type="submit"]',
   },
   nav: {
-    links: '.main-nav a',
+    // links: '.main-nav a',
+    links: '.link-wrapper a',
   },
   // CODE ADDED END
 };

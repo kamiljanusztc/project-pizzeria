@@ -37,7 +37,6 @@ const app = {
 
         /* run thisApp.activatePage with that id */
         thisApp.activatePage(id); // wywolanie metody activate Page podajac jej wydobyte z hrefu id
-
         /* change URL hash-koncowka adresu strony */
         window.location.hash = '#/' + id; // slash dodajemy aby strona automatycznie nie przewijala sie w dol
       });
